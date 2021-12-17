@@ -1,5 +1,7 @@
 #include "GenDmgCore.h"
 #include "CoreLogger.h"
+#include "ICharacter.h"
+#include "DamageStream.h"
 
 GenDmgCore* GenDmgCore::getInstance()
 {
@@ -13,6 +15,32 @@ void GenDmgCore::init()
 {
 	LOG_INIT(0);
 	LOG_INFO("GenDmgCore", "init.");
+
+	DamageCellGroup skill;
+	DamageCellGroup weapon;
+	DamageCellGroup reduceResist;
+	CharacterPtr pPlayer = std::make_shared<ICharacter>();
+	CharacterPtr pTarget = std::make_shared<ICharacter>();
+	DamageStream ds(pPlayer, pTarget);
+
+	pPlayer->setAtk(1285);
+	pPlayer->setLv(81);
+	pPlayer->setDamageAddtion(DamageType::Fire, 0.616);
+
+	pTarget->setLv(92);
+	pTarget->setDamageResist(DamageType::Fire, 0.1);
+
+
+	skill.skillRate = 1.89;
+
+	//weapon.mapDmgType2Cell[DamageType::Fire].additon = 0.28;
+
+	//reduceResist.mapDmgType2Cell[DamageType::Fire].resist = -0.15;
+	
+	ds << skill << weapon << reduceResist;
+
+	double dmg = ds.getDamage(DamageType::Fire,true);
+	LOG_DEBUG("GenDmgCore", "uninit.");
 }
 
 void GenDmgCore::uninit()

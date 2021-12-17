@@ -21,9 +21,21 @@
     <ClInclude Include="..\..\include\GenDmgCore\CoreLogger.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\DamageStream.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\ICharacter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\DamageCell.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\DamageStream.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

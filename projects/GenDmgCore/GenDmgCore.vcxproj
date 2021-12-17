@@ -146,9 +146,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgCore\CoreLogger.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\DamageCell.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\DamageStream.h" />
     <ClInclude Include="..\..\include\GenDmgCore\GenDmgCore.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\ICharacter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\GenDmgCore\DamageStream.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

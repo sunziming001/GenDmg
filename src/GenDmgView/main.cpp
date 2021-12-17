@@ -3,11 +3,18 @@
 #include "GenDmgCore.h"
 #include "ViewLogger.h"
 
-float dmg(float atk, float rate, float enhance, int lvSource, int lvTarget, float reDef=0.0f,float gRate=0.0f)
+float dmg(float atk, float rate, float enhance, int lvSource, int lvTarget, float reDef=0.0f)
 {
 	float defRate = 0.1f;
-	float reDefRate = (1.0f - (defRate - reDef));
-	float ret = atk * rate * enhance * (100 + lvSource) / (200 + lvSource + lvTarget) * reDefRate*(1+gRate);
+	float reDefRate = 1.0f;
+	if (defRate - reDef > 0.0f)
+	{
+		reDefRate -= defRate - reDef;
+	}
+	else {
+
+	}
+	float ret = atk * rate * enhance * (100 + lvSource) / (200 + lvSource + lvTarget) * 1.025;
 	return ret;
 }
 
@@ -16,11 +23,11 @@ int main(int argc, char** argv)
 	LOG_INIT(0);
 	LOG_INFO("Main", "start...");
 
-	float vxl1 = dmg(1285.0f, 1.89f, 1.616f, 81, 92);				//1715
-	float vxl2 = dmg(1285.0f, 1.89f+ 0.28f, 1.616f, 81, 92, 0.15); //2292
+	/*float vxl1 = dmg(1285.0f, 1.89f, 1.616f, 81, 92);				//1715
+	float vxl2 = dmg(1285.0f, 1.89f + 0.28f, 1.616f , 81, 92, 0.15); //2292
 	float vls1 = dmg(1613.0f, 1.992f, 1.638f, 89, 92);				//2350
 	Q_UNUSED(vxl1);
-	Q_UNUSED(vxl2);
+	Q_UNUSED(vxl2);*/
 	GenDmgCore* core = GenDmgCore::getInstance();
 	core->init();
 
