@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</BinDir>
+    <IncludeDir>$(ProjectDir)include\</IncludeDir>
+    <SrcDir>$(ProjectDir)src\</SrcDir>
+    <ObjDir>$(ProjectDir)obj\$(Configuration)\$(Platform)\</ObjDir>
+    <DeployDir>$(SolutionDir)out\deploy\$(Configuration)\$(Platform)\</DeployDir>
+    <CommonHeaderDir>$(SolutionDir)CommonHeader\</CommonHeaderDir>
+    <BoostHeaderDir>$(boost_1_76)</BoostHeaderDir>
+    <BoostLibDir>$(boost_1_76_lib)</BoostLibDir>
+    <HeaderExportDir>$(SolutionDir)include\$(ProjectName)\</HeaderExportDir>
+    <RmtOperHeader>$(Solutiondir)include\RmtOper\</RmtOperHeader>
+    <LuaHeader>$(SolutionDir)include\Lua</LuaHeader>
+    <ProtoHeaderDir>$(ProtoBuf)\include\</ProtoHeaderDir>
+    <Protoc>$(ProtoBuf)\bin\protoc.exe</Protoc>
+    <ProtoLibDir>$(ProtoBuf)\lib\</ProtoLibDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(BinDir)</OutDir>
+    <IntDir>$(ObjDir)</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(IncludeDir);$(CommonHeaderDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>XCOPY $(BinDir)* $(DeployDir) /s /d /y</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalLibraryDirectories>$(DeployDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="IncludeDir">
+      <Value>$(IncludeDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SrcDir">
+      <Value>$(SrcDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ObjDir">
+      <Value>$(ObjDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DeployDir">
+      <Value>$(DeployDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CommonHeaderDir">
+      <Value>$(CommonHeaderDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BoostHeaderDir">
+      <Value>$(BoostHeaderDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BoostLibDir">
+      <Value>$(BoostLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="HeaderExportDir">
+      <Value>$(HeaderExportDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="RmtOperHeader">
+      <Value>$(RmtOperHeader)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LuaHeader">
+      <Value>$(LuaHeader)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ProtoHeaderDir">
+      <Value>$(ProtoHeaderDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="Protoc">
+      <Value>$(Protoc)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ProtoLibDir">
+      <Value>$(ProtoLibDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
