@@ -3,8 +3,8 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <BinDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</BinDir>
-    <IncludeDir>$(ProjectDir)include\</IncludeDir>
-    <SrcDir>$(ProjectDir)src\</SrcDir>
+    <IncludeDir>$(SolutionDir)include\$(ProjectName)\</IncludeDir>
+    <SrcDir>$(SolutionDir)src\$(ProjectName)\</SrcDir>
     <ObjDir>$(ProjectDir)obj\$(Configuration)\$(Platform)\</ObjDir>
     <DeployDir>$(SolutionDir)out\deploy\$(Configuration)\$(Platform)\</DeployDir>
     <CommonHeaderDir>$(SolutionDir)CommonHeader\</CommonHeaderDir>
@@ -23,13 +23,13 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(IncludeDir);$(CommonHeaderDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(IncludeDir);$(CommonHeaderDir);$(BoostHeaderDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
       <Command>XCOPY $(BinDir)* $(DeployDir) /s /d /y</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalLibraryDirectories>$(DeployDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DeployDir);$(BoostLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
