@@ -3,7 +3,7 @@
 
 #include "ICharacter.h"
 #include "DamageCell.h"
-
+#include <set>
 
 class DamageStream
 {
@@ -13,10 +13,20 @@ public:
 	void setSource(CharacterPtr source);
 	void setTarget(CharacterPtr target);
 
-	double getDamage(DamageType type, bool isCrit=false)const;
+	DamageResultSet getDamage(DamageType type)const;
 
 	DamageStream& operator<<(const DamageCellGroup& v);
 private:
+	double calcReflectRate(RelfectType reflectType, bool& isFusion)const;
+	double calcResistRate(DamageType type, bool isFusion)const;
+
+	DamageResult calcRelfectDmg(DamageType type, RelfectType reflectType)const;
+
+	std::set<RelfectType> getRelatedReflectType(DamageType type)const;
+	DamageType getRefelctDmgType(RelfectType reflectType)const;
+private:
+	static std::map<int, int> Lv2FusionArg;
+
 	DamageCellGroup dmgCellGroup_;
 
 	CharacterPtr source_;

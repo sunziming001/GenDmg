@@ -25,6 +25,8 @@ void GenDmgCore::init()
 
 	pPlayer->setAtk(1285);
 	pPlayer->setLv(81);
+	pPlayer->setElementMystery(361);
+	pPlayer->setCirtDmgRate(0.92);
 	pPlayer->setDamageAddtion(DamageType::Fire, 0.616);
 
 	pTarget->setLv(92);
@@ -33,14 +35,14 @@ void GenDmgCore::init()
 
 	skill.skillRate = 1.89;
 
-	//weapon.mapDmgType2Cell[DamageType::Fire].additon = 0.28;
+	weapon.mapDmgType2Cell[DamageType::Fire].additon = 0.28;
 
-	//reduceResist.mapDmgType2Cell[DamageType::Fire].resist = -0.15;
+	reduceResist.mapDmgType2Cell[DamageType::Fire].resist = -0.15;
 	
 	ds << skill << weapon << reduceResist;
 
-	double dmg = ds.getDamage(DamageType::Fire,true);
-	LOG_DEBUG("GenDmgCore", "uninit.");
+	DamageResultSet set = ds.getDamage(DamageType::Fire);
+
 }
 
 void GenDmgCore::uninit()
