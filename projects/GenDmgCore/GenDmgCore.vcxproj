@@ -182,7 +182,7 @@ XCOPY $(SolutionDir)lib\sqlite3\sqlite3.dll $(DeployDir) /s /d /y</Command>
     <ClInclude Include="..\..\include\GenDmgCore\ICharacter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\CharacterBrief.cpp" />
+    <ClCompile Include="..\..\src\GenDmgCore\CharacterBrief.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\DamageStream.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\DBHelper.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp" />
