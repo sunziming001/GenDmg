@@ -92,11 +92,18 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>MAKE_AS_DLL;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\sqlite3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\sqlite3\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY $(BinDir)* $(DeployDir) /s /d /y
+XCOPY $(SolutionDir)lib\sqlite3\sqlite3.dll $(DeployDir) /s /d /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -107,13 +114,20 @@
       <PreprocessorDefinitions>MAKE_AS_DLL;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\sqlite3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\sqlite3\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY $(BinDir)* $(DeployDir) /s /d /y
+XCOPY $(SolutionDir)lib\sqlite3\sqlite3.dll $(DeployDir) /s /d /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -121,11 +135,18 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>MAKE_AS_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\sqlite3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\sqlite3\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY $(BinDir)* $(DeployDir) /s /d /y
+XCOPY $(SolutionDir)lib\sqlite3\sqlite3.dll $(DeployDir) /s /d /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -136,23 +157,34 @@
       <PreprocessorDefinitions>MAKE_AS_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\sqlite3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\sqlite3\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY $(BinDir)* $(DeployDir) /s /d /y
+XCOPY $(SolutionDir)lib\sqlite3\sqlite3.dll $(DeployDir) /s /d /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\GenDmgCore\CharacterBrief.h" />
     <ClInclude Include="..\..\include\GenDmgCore\CoreLogger.h" />
     <ClInclude Include="..\..\include\GenDmgCore\DamageCell.h" />
     <ClInclude Include="..\..\include\GenDmgCore\DamageStream.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\DBHelper.h" />
     <ClInclude Include="..\..\include\GenDmgCore\GenDmgCore.h" />
     <ClInclude Include="..\..\include\GenDmgCore\ICharacter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\CharacterBrief.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\DamageStream.cpp" />
+    <ClCompile Include="..\..\src\GenDmgCore\DBHelper.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

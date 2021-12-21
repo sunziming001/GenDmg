@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 	return 0;
 	// 81 vs 92		48.525
 	
-	//fir 1715 fir_o 6883 sec 2292  sec_v 5398 sec_o 7842
+	//fir 1715 fir_o 6883 sec 2292  sec_v 5398 sec_o 7842?
 	//			sec 4401, 
 	//			weapon 28%
 	//atk 1285, jt 361, enh 61.6% 

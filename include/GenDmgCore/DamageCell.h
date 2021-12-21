@@ -2,7 +2,7 @@
 #define DAMAGE_CELL_H
 
 
-
+#include <map>
 enum class DamageType
 {
 	None,

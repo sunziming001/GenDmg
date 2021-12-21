@@ -18,6 +18,8 @@ public:
 	~GenDmgCore();
 private:
 	GenDmgCore();
+	void testInsert();
+	void testCalc();
 private:
 	static GenDmgCore* instance;
 

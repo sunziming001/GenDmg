@@ -245,7 +245,7 @@ double DamageStream::calcResistRate(DamageType type, bool isFusion) const
 	return resistRate;
 }
 
-DamageResult DamageStream::calcRelfectDmg(DamageType dmgType, RelfectType reflectType) const
+DamageResult DamageStream::calcRelfectDmg(DamageType dmgType_, RelfectType reflectType) const
 {
 	DamageResult ret;
 	bool isFusion = false;
@@ -257,20 +257,20 @@ DamageResult DamageStream::calcRelfectDmg(DamageType dmgType, RelfectType reflec
 	double resistRate = 0.0;
 	double reflectRate = calcReflectRate(reflectType, isFusion);
 	DamageType reflectDmgType = getRefelctDmgType(reflectType);
-	auto additionIter = dmgCellGroup_.mapDmgType2Cell.find(dmgType);
+	auto additionIter = dmgCellGroup_.mapDmgType2Cell.find(dmgType_);
 
 	if (isFusion)
 	{
 		resistRate = calcResistRate(reflectDmgType, isFusion);
 	}
 	else {
-		resistRate = calcResistRate(dmgType, isFusion);
+		resistRate = calcResistRate(dmgType_, isFusion);
 
 		if (additionIter != dmgCellGroup_.mapDmgType2Cell.end())
 		{
 			addtionRate += additionIter->second.additon;
 		}
-		addtionRate += source_->getDamageAddition(dmgType);
+		addtionRate += source_->getDamageAddition(dmgType_);
 	}
 	
 

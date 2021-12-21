@@ -30,12 +30,24 @@
     <ClInclude Include="..\..\include\GenDmgCore\DamageCell.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\DBHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\CharacterBrief.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GenDmgCore\DamageStream.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\DBHelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\CharacterBrief.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
