@@ -20,6 +20,9 @@ private:
 
 	void initLogger();
 	void uninitLogger();
+
+	void initAwesomeFont();
+	void uninitAwesomeFont();
 };
 
 #endif

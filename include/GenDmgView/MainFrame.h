@@ -3,6 +3,9 @@
 
 #include <QFrame>
 #include <QMouseEvent>
+#include <QHBoxLayout>
+
+class MainPanel;
 
 class MainFrame :public QFrame
 {
@@ -16,9 +19,11 @@ protected:
 
 private:
 	bool onHandleNCHitTest(const QByteArray& eventType, void* message, qintptr* result);
+	
 private:
 	QPoint mouseDragPos_;
-
+	QHBoxLayout* mainLayout_;
+	MainPanel* mainPanel_;
 };
 
 #endif

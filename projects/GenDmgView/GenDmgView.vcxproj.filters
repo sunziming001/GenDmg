@@ -37,6 +37,18 @@
     <ClCompile Include="..\..\src\GenDmgView\GenDmgApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgView\QtAwesome.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgView\QtAwesomeAnim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgView\AwesomeFontManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgView\MainPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgView\MainFrame.h">
@@ -46,6 +58,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\GenDmgView\GenDmgApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgView\AwesomeFontManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgView\MainPanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -58,5 +76,13 @@
     <None Include="res\qss\CommonStyle.qss">
       <Filter>Resource Files\qss</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="..\..\include\GenDmgView\QtAwesome.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\include\GenDmgView\QtAwesomeAnim.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

@@ -3,6 +3,8 @@
 #include "ViewLogger.h"
 #include <QResource>
 #include <QFile>
+#include "AwesomeFontManager.h"
+
 #define RCC_FILE_PATH "./res.rcc"
 
 GenDmgApp::GenDmgApp(int argc, char** argv)
@@ -21,10 +23,12 @@ void GenDmgApp::init()
 	initLogger();
 	initRes();
 	initGenDmgCore();
+	initAwesomeFont();
 }
 
 void GenDmgApp::uninit()
 {
+	uninitAwesomeFont();
 	uninitGenDmgCore();
 	uninitRes();
 	uninitLogger();
@@ -81,4 +85,16 @@ void GenDmgApp::initLogger()
 void GenDmgApp::uninitLogger()
 {
 
+}
+
+void GenDmgApp::initAwesomeFont()
+{
+	AwesomeFontManager* mgr = AwesomeFontManager::getInstance();
+	mgr->init(*this);
+}
+
+void GenDmgApp::uninitAwesomeFont()
+{
+	AwesomeFontManager* mgr = AwesomeFontManager::getInstance();
+	mgr->uninit();
 }

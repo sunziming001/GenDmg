@@ -1,7 +1,43 @@
 QFrame#MainFrame{
-	background: #ffffff;
+	background: #edf6f9;
 	border: 2px solid #dcdcdc;
     border-radius: 9px;
-	width: 800px;
-	height: 600px;
+	min-width:800px;
+	min-height:600px;
+}
+
+
+QFrame#MainPanel
+{
+	background: transparent;
+	border-right: 1px solid #dcdcdc;
+	min-width: 56px;
+	max-width: 56px;
+}
+
+QPushButton#MainPanelButton
+{
+	background-color: #fefae0;
+	min-width:40px;
+	max-width:40px;
+	min-height:40px;
+	max-height:40px;
+	margin: 0px; 
+	border-radius: 20px;
+	border: 1px solid #dcdcdc;
+}
+
+QPushButton#MainPanelButton:hover
+{
+	background-color:#e9edc9;
+}
+
+QPushButton#MainPanelButton:pressed
+{
+	background-color:#ccd5ae;
+}
+
+QPushButton#MainPanelButton:checked
+{
+	background-color:#ccd5ae;
 }

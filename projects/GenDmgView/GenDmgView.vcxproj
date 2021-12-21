@@ -19,13 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\GenDmgView\AwesomeFontManager.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\GenDmgApp.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\main.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\MainFrame.cpp" />
+    <ClCompile Include="..\..\src\GenDmgView\MainPanel.cpp" />
+    <ClCompile Include="..\..\src\GenDmgView\QtAwesome.cpp" />
+    <ClCompile Include="..\..\src\GenDmgView\QtAwesomeAnim.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\GenDmgView\AwesomeFontManager.h" />
     <ClInclude Include="..\..\include\GenDmgView\GenDmgApp.h" />
     <ClInclude Include="..\..\include\GenDmgView\MainFrame.h" />
+    <ClInclude Include="..\..\include\GenDmgView\MainPanel.h" />
+    <QtMoc Include="..\..\include\GenDmgView\QtAwesomeAnim.h" />
+    <QtMoc Include="..\..\include\GenDmgView\QtAwesome.h" />
     <ClInclude Include="..\..\include\GenDmgView\ViewLogger.h" />
   </ItemGroup>
   <ItemGroup>

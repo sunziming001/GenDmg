@@ -3,15 +3,32 @@
 #include <QStyleOption>
 #include <windows.h>
 #include <QApplication>
+#include <QPushButton>
+#include "AwesomeFontManager.h"
+#include "MainPanel.h"
+
 
 MainFrame::MainFrame(QWidget* parent)
 	:QFrame(parent)
+	, mainLayout_(nullptr)
+	, mainPanel_(nullptr)
 {
 	this->setObjectName("MainFrame");
 	this->setWindowFlag(Qt::Window);
 	this->setWindowFlag(Qt::FramelessWindowHint);
 	this->setAttribute(Qt::WA_TranslucentBackground);
 	this->setAttribute(Qt::WA_NativeWindow);
+
+	mainLayout_ = new QHBoxLayout;
+	mainLayout_->setContentsMargins(0, 0, 0, 0);
+	this->setLayout(mainLayout_);
+
+
+	mainPanel_ = new MainPanel(this);
+	mainLayout_->addWidget(mainPanel_);
+
+
+	mainLayout_->addStretch(1);
 }
 
 void MainFrame::paintEvent(QPaintEvent* e)

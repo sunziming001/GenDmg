@@ -2,5 +2,6 @@
     <qresource prefix="/res">
         <file>img/char/mona/Mona.png</file>
         <file>qss/CommonStyle.qss</file>
+        <file>font/fontawesome-4.7.0.ttf</file>
     </qresource>
 </RCC>
