@@ -84,7 +84,7 @@ void DBHelper::insertCharacterBrief(CharacterBrief& bref)
 
 
 
-	//char_id, is_break, lv, atk, def, hp, sp_prop_type, sp_prop
+	//char_id, 
 	rc = sqlite3_prepare_v2(db, sqlLv.c_str(), sqlLv.length() + 1, &pstmt, nullptr);
 	if (rc != SQLITE_OK) {
 		zErrMsg = sqlite3_errmsg(db);
@@ -121,6 +121,84 @@ void DBHelper::insertCharacterBrief(CharacterBrief& bref)
 
 
 	sqlite3_close(db);
+}
+
+std::vector<CharacterBrief> DBHelper::selectAllCharacterBrief()
+{
+	std::vector<CharacterBrief> ret;
+
+	sqlite3* db = nullptr;
+	sqlite3_stmt* pstmt = nullptr;
+	const char* zErrMsg = nullptr;
+	const char* pTail = nullptr;
+	int rc = 0;
+	std::string sqlSelectBrief = "select id, name, dmg_type, img_path from tb_char_brief;";
+	std::string sqlSelectLvProp = "select is_break, lv, atk, def, hp, sp_prop_type, sp_prop from tb_char_lv_detail where char_id= ? ";
+	
+	rc = sqlite3_open(DB_FILE_PATH, &db);
+	if (rc) {
+		std::string errLog = std::string("open error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		return ret;
+	}
+
+	//query briefs
+	rc = sqlite3_prepare_v2(db, sqlSelectBrief.c_str(), -1, &pstmt, NULL);
+	if (rc != SQLITE_OK)
+	{
+		std::string errLog = std::string("prepare sqlSelectBrief error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		sqlite3_close(db);
+		return ret;
+	}
+	else {
+		while (sqlite3_step(pstmt) == SQLITE_ROW) {
+			CharacterBrief brief;
+			brief.setId(sqlite3_column_int(pstmt, 0));
+			brief.setName((const char*)(sqlite3_column_text(pstmt, 1)));
+			brief.setDmgType(static_cast<DamageType>(sqlite3_column_int(pstmt, 2)));
+			brief.setImgPath((const char*)(sqlite3_column_text(pstmt, 3)));
+			ret.push_back(brief);
+		}
+	}
+	sqlite3_reset(pstmt);
+	sqlite3_finalize(pstmt);
+	pstmt = nullptr;
+
+	//query lv props
+	for (auto& brief : ret)
+	{
+		int charId = brief.getId();
+		rc = sqlite3_prepare_v2(db, sqlSelectLvProp.c_str(), -1, &pstmt, NULL);
+		if (rc != SQLITE_OK)
+		{
+			std::string errLog = std::string("prepare sqlSelectLvProp error: ") + sqlite3_errmsg(db);
+			LOG_ERROR("DBHelper", errLog.c_str());
+			sqlite3_close(db);
+			return ret;
+		}
+		else {
+			sqlite3_bind_int(pstmt, 1, charId);
+			while (sqlite3_step(pstmt) == SQLITE_ROW) {
+				//is_break, lv, atk, def, hp, sp_prop_type, sp_prop
+				CharacterLvProp prop;
+				prop.isBreak = static_cast<bool>(sqlite3_column_int(pstmt, 0));
+				prop.lv = sqlite3_column_int(pstmt, 1);
+				prop.atk = sqlite3_column_int(pstmt, 2);
+				prop.def = sqlite3_column_int(pstmt, 3);
+				prop.hp = sqlite3_column_int(pstmt, 4);
+				prop.spPropType = static_cast<SpecialPropType>(sqlite3_column_int(pstmt, 5));
+				prop.spPropValue = sqlite3_column_double(pstmt, 6);
+
+				brief.insertLvProp(prop);
+			}
+		}
+
+		sqlite3_reset(pstmt);
+	}
+
+	sqlite3_close(db);
+	return ret;
 }
 
 DBHelper::DBHelper()

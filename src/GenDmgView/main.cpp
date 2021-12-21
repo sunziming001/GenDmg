@@ -2,6 +2,7 @@
 #include "MainFrame.h"
 #include "GenDmgCore.h"
 #include "ViewLogger.h"
+#include "GenDmgApp.h"
 
 float dmg(float atk, float rate, float enhance, int lvSource, int lvTarget, float reDef=0.0f)
 {
@@ -20,25 +21,13 @@ float dmg(float atk, float rate, float enhance, int lvSource, int lvTarget, floa
 
 int main(int argc, char** argv)
 {
-	LOG_INIT(0);
-	LOG_INFO("Main", "start...");
 
-	/*float vxl1 = dmg(1285.0f, 1.89f, 1.616f, 81, 92);				//1715
-	float vxl2 = dmg(1285.0f, 1.89f + 0.28f, 1.616f , 81, 92, 0.15); //2292
-	float vls1 = dmg(1613.0f, 1.992f, 1.638f, 89, 92);				//2350
-	Q_UNUSED(vxl1);
-	Q_UNUSED(vxl2);*/
-	GenDmgCore* core = GenDmgCore::getInstance();
-	core->init();
-
-	QApplication a(argc, argv);
+	GenDmgApp a(argc, argv);
 	MainFrame mainFrame;
 	mainFrame.show();
+
 	a.exec();
 
-	core->uninit();
-
-	LOG_INFO("Main", "end");
 	return 0;
 	// 81 vs 92		48.525
 	

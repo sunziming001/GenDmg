@@ -17,7 +17,7 @@ void GenDmgCore::init()
 	LOG_INIT(0);
 	LOG_INFO("GenDmgCore", "init.");
 	DBHelper::getInstance()->init();
-
+	DBHelper::getInstance()->selectAllCharacterBrief();
 }
 
 void GenDmgCore::uninit()

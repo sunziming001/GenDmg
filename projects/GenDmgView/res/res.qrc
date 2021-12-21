@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>img/char/mona/Mona.png</file>
+        <file>qss/CommonStyle.qss</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,7 @@
+QFrame#MainFrame{
+	background: #ffffff;
+	border: 2px solid #dcdcdc;
+    border-radius: 9px;
+	width: 800px;
+	height: 600px;
+}

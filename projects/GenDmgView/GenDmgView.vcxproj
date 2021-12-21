@@ -19,12 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\GenDmgView\GenDmgApp.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\main.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\MainFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\GenDmgView\GenDmgApp.h" />
     <ClInclude Include="..\..\include\GenDmgView\MainFrame.h" />
     <ClInclude Include="..\..\include\GenDmgView\ViewLogger.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="res\res.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\qss\CommonStyle.qss" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B05359CB-532D-4F9A-B20E-FF0C7A6C296A}</ProjectGuid>
@@ -122,6 +130,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>GenDmgCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)deploy.bat $(BinDir) $(DeployDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -139,6 +150,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>GenDmgCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)deploy.bat $(BinDir) $(DeployDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -155,6 +169,9 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <AdditionalDependencies>GenDmgCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)deploy.bat $(BinDir) $(DeployDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -172,6 +189,9 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <AdditionalDependencies>GenDmgCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)deploy.bat $(BinDir) $(DeployDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
