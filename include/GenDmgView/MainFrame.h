@@ -6,6 +6,7 @@
 #include <QHBoxLayout>
 
 class MainPanel;
+class TitlePanel;
 
 class MainFrame :public QFrame
 {
@@ -22,8 +23,10 @@ private:
 	
 private:
 	QPoint mouseDragPos_;
-	QHBoxLayout* mainLayout_;
+	QVBoxLayout* mainLayout_;
+	QHBoxLayout* bodyLayout_;
 	MainPanel* mainPanel_;
+	TitlePanel* titlePanel_;
 };
 
 #endif

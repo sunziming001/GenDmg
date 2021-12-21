@@ -49,6 +49,9 @@
     <ClCompile Include="..\..\src\GenDmgView\MainPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgView\TitlePanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgView\MainFrame.h">
@@ -64,6 +67,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\GenDmgView\MainPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgView\TitlePanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

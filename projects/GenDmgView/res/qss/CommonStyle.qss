@@ -41,3 +41,32 @@ QPushButton#MainPanelButton:checked
 {
 	background-color:#ccd5ae;
 }
+
+
+QFrame#TitlePanel
+{
+	background: transparent;
+	min-height:28px;
+	max-height:28px;
+	border-bottom: 1px solid #acacac;
+}
+
+QPushButton#TitleButton
+{
+	min-height:20px;
+	max-height:20px;
+	min-width:20px;
+	max-width:20px;
+	border-radius: 10px;
+}
+
+
+QPushButton#TitleButton:hover
+{
+	background-color:#faedcd;
+}
+
+QPushButton#TitleButton:pressed
+{
+	background-color:#d4a373;
+}

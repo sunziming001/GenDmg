@@ -6,12 +6,14 @@
 #include <QPushButton>
 #include "AwesomeFontManager.h"
 #include "MainPanel.h"
+#include "TitlePanel.h"
 
 
 MainFrame::MainFrame(QWidget* parent)
 	:QFrame(parent)
 	, mainLayout_(nullptr)
 	, mainPanel_(nullptr)
+	, titlePanel_(nullptr)
 {
 	this->setObjectName("MainFrame");
 	this->setWindowFlag(Qt::Window);
@@ -19,16 +21,25 @@ MainFrame::MainFrame(QWidget* parent)
 	this->setAttribute(Qt::WA_TranslucentBackground);
 	this->setAttribute(Qt::WA_NativeWindow);
 
-	mainLayout_ = new QHBoxLayout;
+	mainLayout_ = new QVBoxLayout;
 	mainLayout_->setContentsMargins(0, 0, 0, 0);
 	this->setLayout(mainLayout_);
 
+	bodyLayout_ = new QHBoxLayout;
+	bodyLayout_->setContentsMargins(0, 0, 0, 0);
 
+
+	titlePanel_ = new TitlePanel(this);
 	mainPanel_ = new MainPanel(this);
-	mainLayout_->addWidget(mainPanel_);
+
+	mainLayout_->addWidget(titlePanel_);
+	mainLayout_->addLayout(bodyLayout_, 1);
+
+	bodyLayout_->addWidget(mainPanel_);
+	bodyLayout_->addStretch(1);
 
 
-	mainLayout_->addStretch(1);
+	
 }
 
 void MainFrame::paintEvent(QPaintEvent* e)

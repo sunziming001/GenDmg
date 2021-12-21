@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QButtonGroup>
+
 class MainPanel:public QFrame
 {
 public:
