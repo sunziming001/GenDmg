@@ -3,12 +3,14 @@
 #include <QApplication>
 
 TitlePanel::TitlePanel(QWidget* parent)
+	:QFrame(parent)
 {
 	setObjectName("TitlePanel");
 
 	mainLayout_ = new QHBoxLayout;
 	this->setLayout(mainLayout_);
 	mainLayout_->setContentsMargins(0, 2, 4, 0);
+
 
 	lbTitle_ = new QLabel(tr("GenDmg"), this);
 	btnMin_ = createTitleButton(fa::windowminimize);

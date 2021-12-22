@@ -8,6 +8,7 @@
 
 class TitlePanel :public QFrame
 {
+	Q_OBJECT
 public:
 	TitlePanel(QWidget* parent);
 

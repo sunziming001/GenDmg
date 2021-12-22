@@ -46,16 +46,22 @@ void GenDmgCore::testInsert()
 
 	brief.insertLvProp(CharacterLvProp(1, true, 810, 51, 22, SpecialPropType::ChargeEffect, 0.0));
 	brief.insertLvProp(CharacterLvProp(20, false, 2102, 58, 132, SpecialPropType::ChargeEffect, 0.0));
+
 	brief.insertLvProp(CharacterLvProp(20, true, 2797, 77, 176, SpecialPropType::ChargeEffect, 0.0));
 	brief.insertLvProp(CharacterLvProp(40, false, 4185, 115, 263, SpecialPropType::ChargeEffect, 0.0));
+
 	brief.insertLvProp(CharacterLvProp(40, true, 4678, 129, 294, SpecialPropType::ChargeEffect, 8.0));
 	brief.insertLvProp(CharacterLvProp(50, false, 5383, 148, 338, SpecialPropType::ChargeEffect, 8.0));
+
 	brief.insertLvProp(CharacterLvProp(50, true, 6041, 167, 379, SpecialPropType::ChargeEffect, 16.0));
 	brief.insertLvProp(CharacterLvProp(60, false, 6752, 186, 424, SpecialPropType::ChargeEffect, 16.0));
+
 	brief.insertLvProp(CharacterLvProp(60, true, 7246, 200, 455, SpecialPropType::ChargeEffect, 16.0));
 	brief.insertLvProp(CharacterLvProp(70, false, 7964, 220, 500, SpecialPropType::ChargeEffect, 16.0));
+
 	brief.insertLvProp(CharacterLvProp(70, true, 8458, 233, 531, SpecialPropType::ChargeEffect, 24.0));
 	brief.insertLvProp(CharacterLvProp(80, false, 9184, 253, 576, SpecialPropType::ChargeEffect, 24.0));
+
 	brief.insertLvProp(CharacterLvProp(80, true, 9677, 267, 607, SpecialPropType::ChargeEffect, 32.0));
 	brief.insertLvProp(CharacterLvProp(90, false, 10409, 287, 653, SpecialPropType::ChargeEffect, 32.0));
 

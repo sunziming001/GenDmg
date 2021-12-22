@@ -11,6 +11,7 @@ GenDmgApp::GenDmgApp(int argc, char** argv)
 	:QApplication(argc, argv)
 {
 	init();
+
 }
 
 GenDmgApp::~GenDmgApp()
@@ -46,13 +47,14 @@ void GenDmgApp::initRes()
 		return;
 	}
 
-	QFile file(":/res/qss/CommonStyle.qss");
-	file.open(QIODeviceBase::ReadOnly);
-	QString qss = QString::fromUtf8(file.readAll());
+	QFile fileQss(":/res/qss/CommonStyle.qss");
+	fileQss.open(QIODeviceBase::ReadOnly);
+	QString qss = QString::fromUtf8(fileQss.readAll());
 	this->setStyleSheet(qss);
+	fileQss.close();
 	
-
-	
+	ret = translator_->load(":/res/ts/zh.qm");
+	this->installTranslator(translator_);
 }
 
 void GenDmgApp::uninitRes()

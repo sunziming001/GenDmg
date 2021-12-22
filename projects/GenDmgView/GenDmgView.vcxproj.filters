@@ -26,6 +26,9 @@
     <Filter Include="Resource Files\qss">
       <UniqueIdentifier>{30f1f555-6640-47db-8475-d59365c74575}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\ts">
+      <UniqueIdentifier>{2b3faa28-0476-467c-b5d2-d6b2ab2f9e5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GenDmgView\main.cpp">
@@ -54,33 +57,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\GenDmgView\MainFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\GenDmgView\ViewLogger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\GenDmgView\GenDmgApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\GenDmgView\AwesomeFontManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\GenDmgView\MainPanel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\GenDmgView\TitlePanel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="res\res.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\qss\CommonStyle.qss">
       <Filter>Resource Files\qss</Filter>
+    </None>
+    <None Include="res\ts\zh.ts">
+      <Filter>Resource Files\ts</Filter>
+    </None>
+    <None Include="res\ts\en.ts">
+      <Filter>Resource Files\ts</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -90,5 +82,22 @@
     <QtMoc Include="..\..\include\GenDmgView\QtAwesomeAnim.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="..\..\include\GenDmgView\TitlePanel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\include\GenDmgView\MainPanel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\include\GenDmgView\MainFrame.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\include\GenDmgView\GenDmgApp.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="res\res.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

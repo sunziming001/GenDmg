@@ -244,7 +244,8 @@ double DamageStream::calcResistRate(DamageType type, bool isFusion) const
 	}
 	return resistRate;
 }
-
+//2.1376262626262626262626262626263
+//(2+109/792)
 DamageResult DamageStream::calcRelfectDmg(DamageType dmgType_, RelfectType reflectType) const
 {
 	DamageResult ret;

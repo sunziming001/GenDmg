@@ -10,6 +10,7 @@ class TitlePanel;
 
 class MainFrame :public QFrame
 {
+	Q_OBJECT
 public:
 	MainFrame(QWidget* parent=nullptr);
 protected:

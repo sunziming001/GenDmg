@@ -8,6 +8,7 @@
 
 class MainPanel:public QFrame
 {
+	Q_OBJECT
 public:
 	MainPanel(QWidget *parent =nullptr);
 private:
