@@ -8,54 +8,7 @@
 #include "CharacterBrief.h"
 #include <QComboBox>
 #include <QAbstractListModel>
-
-class MyModel :public QAbstractListModel
-{
-public:
-	MyModel(QObject* parent = nullptr)
-		:QAbstractListModel(parent)
-	{
-
-	}
-	~MyModel()
-	{}
-
-	/*virtual QModelIndex index(int row, int col, const QModelIndex&) const
-	{
-		static int i = 0;
-		return createIndex(row, col,i++);
-	}
-	virtual QModelIndex parent(const QModelIndex& ) const
-	{
-		return QModelIndex();
-	}
-
-	virtual int columnCount(const QModelIndex&) const
-	{
-		return 4;
-	}*/
-
-	virtual int rowCount(const QModelIndex&) const
-	{
-		return 5;
-	}
-
-	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const
-	{
-		QVariant value;
-		switch (role)
-		{
-		case Qt::DisplayRole:
-		{
-			value = index.row() + index.column();
-		}
-		break;
-		default:
-			break;
-		}
-		return value;
-	}
-};
+#include <QTableView>
 
 class CharacterFrame:public QFrame
 {
@@ -66,6 +19,8 @@ public:
 private:
 	QFrame* createConfigView();
 	QComboBox* createCharacterSearcher();
+	QTableView* createLvPropTable();
+	void onCharacterSearcherIndexChaged(int indx);
 private:
 	QVBoxLayout* mainLayout_ =nullptr;
 
@@ -77,8 +32,10 @@ private:
 	QComboBox* cbCharacterSeacher_ = nullptr;
 	QVBoxLayout* configSearchLayout_ = nullptr;
 
+	QTableView* tvLvProps_ = nullptr;
 
 	std::vector<CharacterBrief> allCharacterBrief_;
+	
 };
 
 

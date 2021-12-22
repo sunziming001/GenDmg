@@ -4,7 +4,7 @@
 #include "CoreDefine.h"
 #include <vector>
 #include "CharacterBrief.h"
-
+#include "CharacterLvProp.h"
 class GenDmgCore
 {
 public:
@@ -12,6 +12,7 @@ public:
 	DLL_EXPORT void init();
 	DLL_EXPORT void uninit();
 	DLL_EXPORT std::vector<CharacterBrief> getAllCharacterBrief();
+	DLL_EXPORT std::vector<CharacterLvProp> getCharacterLvProps(int charId);
 	~GenDmgCore();
 private:
 	GenDmgCore();

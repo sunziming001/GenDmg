@@ -87,3 +87,22 @@ QLabel#CharacterImgLabel
 	max-width:208px;
 	max-height:248px;
 }
+
+QComboBox#CharacterSearcherComboBox
+{
+	max-width:200px;
+	min-width:200px;
+	max-height:20px;
+	min-height:20px;
+}
+
+
+QTableView#LvPropsTableView{
+	border-top: 1px solid #000000;
+	border-left: 1px solid #000000;
+	padding:0px;
+	max-width:450px;
+	min-width:450px;
+	max-height:250px;
+	min-height:250px;
+}
