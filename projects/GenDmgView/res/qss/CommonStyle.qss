@@ -1,3 +1,7 @@
+QFrame{
+	background: transparent;
+}
+
 QFrame#MainFrame{
 	background: #edf6f9;
 	border: 2px solid #dcdcdc;
@@ -6,6 +10,10 @@ QFrame#MainFrame{
 	min-height:600px;
 }
 
+QScrollArea#FrameContainer{
+	background: transparent;
+	border: none;
+}
 
 QFrame#MainPanel
 {
@@ -69,4 +77,13 @@ QPushButton#TitleButton:hover
 QPushButton#TitleButton:pressed
 {
 	background-color:#d4a373;
+}
+
+
+QLabel#CharacterImgLabel
+{
+	min-width:208px;
+	min-height:248px;
+	max-width:208px;
+	max-height:248px;
 }

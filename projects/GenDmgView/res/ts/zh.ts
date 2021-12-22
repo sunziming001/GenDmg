@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>CharacterFrame</name>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="57"/>
+        <source>input character name here</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TitlePanel</name>
     <message>
         <location filename="../../../../src/GenDmgView/TitlePanel.cpp" line="15"/>

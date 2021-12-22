@@ -3,7 +3,7 @@
         <file>img/char/mona/Mona.png</file>
         <file>qss/CommonStyle.qss</file>
         <file>font/fontawesome-4.7.0.ttf</file>
-        <file compress-algo="none">ts/en.qm</file>
-        <file compress-algo="none">ts/zh.qm</file>
+        <file>ts/en.qm</file>
+        <file>ts/zh.qm</file>
     </qresource>
 </RCC>

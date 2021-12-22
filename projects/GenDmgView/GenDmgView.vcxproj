@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GenDmgView\AwesomeFontManager.cpp" />
+    <ClCompile Include="..\..\src\GenDmgView\CharacterFrame.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\GenDmgApp.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\main.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\MainFrame.cpp" />
@@ -30,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgView\AwesomeFontManager.h" />
+    <QtMoc Include="..\..\include\GenDmgView\CharacterFrame.h" />
     <QtMoc Include="..\..\include\GenDmgView\GenDmgApp.h" />
     <QtMoc Include="..\..\include\GenDmgView\MainFrame.h" />
     <QtMoc Include="..\..\include\GenDmgView\MainPanel.h" />

@@ -55,6 +55,9 @@
     <ClCompile Include="..\..\src\GenDmgView\TitlePanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgView\CharacterFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgView\ViewLogger.h">
@@ -92,6 +95,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\..\include\GenDmgView\GenDmgApp.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\include\GenDmgView\CharacterFrame.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

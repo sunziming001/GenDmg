@@ -2,6 +2,7 @@
 #define _DB_HELPER_H
 
 #include"CharacterBrief.h"
+#include"CharacterLvProp.h"
 #include <vector>
 
 #define DB_FILE_PATH "./genshin.db"
@@ -17,6 +18,9 @@ public:
 
 	void insertCharacterBrief(CharacterBrief& bref);
 	std::vector<CharacterBrief> selectAllCharacterBrief();
+
+	void insertLvProps(int charId, const std::set<CharacterLvProp>& lvProps);
+	std::set<CharacterLvProp> selectLvProps(int charId);
 private:
 	DBHelper();
 	void initCharacterTable();

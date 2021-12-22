@@ -31,7 +31,6 @@ DBHelper::~DBHelper()
 
 void DBHelper::insertCharacterBrief(CharacterBrief& bref)
 {
-	std::set<CharacterLvProp> lvProps = bref.getLvProps();
 	sqlite3* db = nullptr;
 	sqlite3_stmt* pstmt = nullptr;
 	sqlite3_stmt* pstmtId = nullptr;
@@ -44,18 +43,8 @@ void DBHelper::insertCharacterBrief(CharacterBrief& bref)
 		LOG_ERROR("DBHelper", errLog.c_str());
 		return;
 	}
-	std::string sqlBrief = "insert into tb_char_brief (name, img_path, dmg_type) values (?,?,?);";
 
-	/*"char_id integer not null,"
-		"is_break integer not null,"
-		"lv integer not null, "
-		"atk integer not null,"
-		"def integer not null,"
-		"hp integer not null,"
-		"sp_prop_type integer not null,"
-		"sp_prop real not null,"*/
-	std::string sqlLv = "insert into tb_char_lv_detail(char_id,is_break,lv,atk,def,hp,sp_prop_type,sp_prop)values(?,?,?,?,?,?,?,?);";
-	
+	std::string sqlBrief = "insert into tb_char_brief (name, img_path, dmg_type) values (?,?,?);";
 	rc = sqlite3_prepare_v2(db, sqlBrief.c_str(), sqlBrief.length()+1,&pstmt, nullptr);
 	if (rc != SQLITE_OK) {
 		sqlite3_close(db);
@@ -82,44 +71,6 @@ void DBHelper::insertCharacterBrief(CharacterBrief& bref)
 	int id =static_cast<int>(sqlite3_last_insert_rowid(db));
 	bref.setId(id);
 
-
-
-	//char_id, 
-	rc = sqlite3_prepare_v2(db, sqlLv.c_str(), sqlLv.length() + 1, &pstmt, nullptr);
-	if (rc != SQLITE_OK) {
-		zErrMsg = sqlite3_errmsg(db);
-		std::string errLog = std::string("prepare tb_char_brief error: ") + sqlite3_errmsg(db);
-		LOG_ERROR("DBHelper", errLog.c_str());
-		sqlite3_close(db);
-		return;
-	}
-	
-	for (auto iter = lvProps.begin();
-		iter != lvProps.end();
-		iter++)
-	{
-		sqlite3_bind_int(pstmt, 1, id );
-		sqlite3_bind_int(pstmt, 2, static_cast<int>(iter->isBreak));
-		sqlite3_bind_int(pstmt, 3, iter->lv);
-		sqlite3_bind_int(pstmt, 4, iter->atk);
-		sqlite3_bind_int(pstmt, 5, iter->def);
-		sqlite3_bind_int(pstmt, 6, iter->hp);
-		sqlite3_bind_int(pstmt, 7, static_cast<int>(iter->spPropType));
-		sqlite3_bind_double(pstmt, 8, iter->spPropValue);
-
-		rc = sqlite3_step(pstmt);
-		if (SQLITE_DONE != rc)
-		{
-			zErrMsg = sqlite3_errmsg(db);
-			std::string errLog = std::string("insert tb_char_lv_detail error: ") + sqlite3_errmsg(db);
-			LOG_ERROR("DBHelper", errLog.c_str());
-		}
-		sqlite3_reset(pstmt);
-	}
-	sqlite3_finalize(pstmt);
-	pstmt = nullptr;
-
-
 	sqlite3_close(db);
 }
 
@@ -133,8 +84,7 @@ std::vector<CharacterBrief> DBHelper::selectAllCharacterBrief()
 	const char* pTail = nullptr;
 	int rc = 0;
 	std::string sqlSelectBrief = "select id, name, dmg_type, img_path from tb_char_brief;";
-	std::string sqlSelectLvProp = "select is_break, lv, atk, def, hp, sp_prop_type, sp_prop from tb_char_lv_detail where char_id= ? ";
-	
+
 	rc = sqlite3_open(DB_FILE_PATH, &db);
 	if (rc) {
 		std::string errLog = std::string("open error: ") + sqlite3_errmsg(db);
@@ -165,39 +115,104 @@ std::vector<CharacterBrief> DBHelper::selectAllCharacterBrief()
 	sqlite3_finalize(pstmt);
 	pstmt = nullptr;
 
-	//query lv props
-	for (auto& brief : ret)
-	{
-		int charId = brief.getId();
-		rc = sqlite3_prepare_v2(db, sqlSelectLvProp.c_str(), -1, &pstmt, NULL);
-		if (rc != SQLITE_OK)
-		{
-			std::string errLog = std::string("prepare sqlSelectLvProp error: ") + sqlite3_errmsg(db);
-			LOG_ERROR("DBHelper", errLog.c_str());
-			sqlite3_close(db);
-			return ret;
-		}
-		else {
-			sqlite3_bind_int(pstmt, 1, charId);
-			while (sqlite3_step(pstmt) == SQLITE_ROW) {
-				//is_break, lv, atk, def, hp, sp_prop_type, sp_prop
-				CharacterLvProp prop;
-				prop.isBreak = static_cast<bool>(sqlite3_column_int(pstmt, 0));
-				prop.lv = sqlite3_column_int(pstmt, 1);
-				prop.atk = sqlite3_column_int(pstmt, 2);
-				prop.def = sqlite3_column_int(pstmt, 3);
-				prop.hp = sqlite3_column_int(pstmt, 4);
-				prop.spPropType = static_cast<SpecialPropType>(sqlite3_column_int(pstmt, 5));
-				prop.spPropValue = sqlite3_column_double(pstmt, 6);
+	
+	sqlite3_close(db);
+	return ret;
+}
 
-				brief.insertLvProp(prop);
-			}
-		}
+void DBHelper::insertLvProps(int charId, const std::set<CharacterLvProp>& lvProps)
+{
+	sqlite3* db = nullptr;
+	sqlite3_stmt* pstmt = nullptr;
+	sqlite3_stmt* pstmtId = nullptr;
+	const char* zErrMsg = nullptr;
+	const char* pTail = nullptr;
+	int rc = 0;
+	rc = sqlite3_open(DB_FILE_PATH, &db);
+	std::string sqlLv = "insert into tb_char_lv_detail(char_id,is_break,lv,atk,def,hp,sp_prop_type,sp_prop)values(?,?,?,?,?,?,?,?);";
 
-		sqlite3_reset(pstmt);
+	rc = sqlite3_prepare_v2(db, sqlLv.c_str(), sqlLv.length() + 1, &pstmt, nullptr);
+	if (rc != SQLITE_OK) {
+		zErrMsg = sqlite3_errmsg(db);
+		std::string errLog = std::string("prepare tb_char_brief error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		sqlite3_close(db);
+		return;
 	}
 
+	for (auto iter = lvProps.begin();
+		iter != lvProps.end();
+		iter++)
+	{
+		sqlite3_bind_int(pstmt, 1, charId);
+		sqlite3_bind_int(pstmt, 2, static_cast<int>(iter->getIsBreak()));
+		sqlite3_bind_int(pstmt, 3, iter->getLv());
+		sqlite3_bind_int(pstmt, 4, iter->getAtk());
+		sqlite3_bind_int(pstmt, 5, iter->getDef());
+		sqlite3_bind_int(pstmt, 6, iter->getHp());
+		sqlite3_bind_int(pstmt, 7, static_cast<int>(iter->getSpPropType()));
+		sqlite3_bind_double(pstmt, 8, iter->getSpPropValue());
+
+		rc = sqlite3_step(pstmt);
+		if (SQLITE_DONE != rc)
+		{
+			zErrMsg = sqlite3_errmsg(db);
+			std::string errLog = std::string("insert tb_char_lv_detail error: ") + sqlite3_errmsg(db);
+			LOG_ERROR("DBHelper", errLog.c_str());
+		}
+		sqlite3_reset(pstmt);
+	}
+	sqlite3_finalize(pstmt);
+	pstmt = nullptr;
+
+
 	sqlite3_close(db);
+}
+
+std::set<CharacterLvProp> DBHelper::selectLvProps(int charId)
+{
+	std::set<CharacterLvProp> ret;
+
+	sqlite3* db = nullptr;
+	sqlite3_stmt* pstmt = nullptr;
+	const char* zErrMsg = nullptr;
+	const char* pTail = nullptr;
+	int rc = 0;
+	std::string sqlSelectLvProp = "select is_break, lv, atk, def, hp, sp_prop_type, sp_prop from tb_char_lv_detail where char_id= ? ";
+
+	rc = sqlite3_open(DB_FILE_PATH, &db);
+	if (rc) {
+		std::string errLog = std::string("open error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		return ret;
+	}
+
+	rc = sqlite3_prepare_v2(db, sqlSelectLvProp.c_str(), -1, &pstmt, NULL);
+	if (rc != SQLITE_OK)
+	{
+		std::string errLog = std::string("prepare sqlSelectLvProp error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		sqlite3_close(db);
+		return ret;
+	}
+	else {
+		sqlite3_bind_int(pstmt, 1, charId);
+		while (sqlite3_step(pstmt) == SQLITE_ROW) {
+			//is_break, lv, atk, def, hp, sp_prop_type, sp_prop
+			CharacterLvProp prop;
+			prop.setIsBreak(static_cast<bool>(sqlite3_column_int(pstmt, 0)));
+			prop.setLv(sqlite3_column_int(pstmt, 1));
+			prop.setAtk(sqlite3_column_int(pstmt, 2));
+			prop.setDef(sqlite3_column_int(pstmt, 3));
+			prop.setHp(sqlite3_column_int(pstmt, 4));
+			prop.setSpPropType(static_cast<SpecialPropType>(sqlite3_column_int(pstmt, 5)));
+			prop.setSpPropValue(sqlite3_column_double(pstmt, 6));
+
+			ret.insert(prop);
+		}
+	}
+
+
 	return ret;
 }
 
@@ -226,7 +241,7 @@ void DBHelper::initCharacterTable()
 		"img_path text not null);";
 
 	std::string sql_char_lv_detail = "create table IF NOT EXISTS "
-		"tb_char_lv_detail(id integer primary key autoincrement, "
+		"tb_char_lv_detail("
 		"char_id integer not null,"
 		"is_break integer not null,"
 		"lv integer not null, "
@@ -234,7 +249,8 @@ void DBHelper::initCharacterTable()
 		"def integer not null,"
 		"hp integer not null,"
 		"sp_prop_type integer not null,"
-		"sp_prop real not null"
+		"sp_prop real not null,"
+		" PRIMARY KEY (char_id, is_break, lv)"
 		");";
 
 

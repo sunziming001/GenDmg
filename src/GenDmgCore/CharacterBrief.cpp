@@ -42,33 +42,6 @@ void CharacterBrief::setImgPath(const std::string& val)
 	imgPath_ = val;
 }
 
-void CharacterBrief::insertLvProp(const CharacterLvProp& prop)
-{
-	lvProps_.insert(prop);
-}
-
-CharacterLvProp CharacterBrief::getLvProp(int lv, bool isBreak, bool& hasProp)
-{
-	CharacterLvProp key;
-	key.lv = lv;
-	key.isBreak = isBreak;
-	hasProp = false;
-	auto iter = lvProps_.find(key);
-	if (iter != lvProps_.end())
-	{
-		hasProp = true;
-		return *iter;
-	}
-	else {
-		
-		return key;
-	}
-}
-
-std::set<CharacterLvProp> CharacterBrief::getLvProps() const
-{
-	return lvProps_;
-}
 
 DamageType CharacterBrief::getDmgType() const
 {

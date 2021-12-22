@@ -36,6 +36,12 @@
     <ClInclude Include="..\..\include\GenDmgCore\CharacterBrief.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\CoreDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\CharacterLvProp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp">
@@ -48,6 +54,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GenDmgCore\CharacterBrief.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\CharacterLvProp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

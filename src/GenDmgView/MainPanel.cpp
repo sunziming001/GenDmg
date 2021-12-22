@@ -24,6 +24,8 @@ MainPanel::MainPanel(QWidget* parent /*=nullptr*/)
 	mainLayout_->addWidget(btnHome_);
 	mainLayout_->addWidget(btnCharacter_);
 	mainLayout_->addStretch(1);
+
+	connect(btnGroup_, &QButtonGroup::buttonToggled, this, &MainPanel::onButtonToggled);
 }
 
 QPushButton* MainPanel::createPanelButton(int awsomeIcon)
@@ -41,4 +43,17 @@ QPushButton* MainPanel::createPanelButton(int awsomeIcon)
 	btnGroup_->addButton(ret);
 
 	return ret;
+}
+
+void MainPanel::onButtonToggled(QAbstractButton* btn, bool toggled)
+{
+	if (toggled)
+	{
+		if (btn == btnHome_)
+		{
+			emit sigPageChanged(PageType::Home);
+		}else if(btn==btnCharacter_){
+			emit sigPageChanged(PageType::Character);
+		}
+	}
 }

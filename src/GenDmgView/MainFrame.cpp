@@ -7,6 +7,8 @@
 #include "AwesomeFontManager.h"
 #include "MainPanel.h"
 #include "TitlePanel.h"
+#include "CharacterFrame.h"
+#include <QScrollArea>
 
 
 MainFrame::MainFrame(QWidget* parent)
@@ -28,18 +30,24 @@ MainFrame::MainFrame(QWidget* parent)
 	bodyLayout_ = new QHBoxLayout;
 	bodyLayout_->setContentsMargins(0, 0, 0, 0);
 
-
 	titlePanel_ = new TitlePanel(this);
 	mainPanel_ = new MainPanel(this);
+	characterFrame_ = new CharacterFrame(this);
+
+	stackedLayout_ = new QStackedLayout(this);
+	stackedLayout_->setStackingMode(QStackedLayout::StackOne);
+	
+	homeFrameIndex_ = stackedLayout_->addWidget(createContainer(new QFrame(this)));
+	characterFrameIndex_ = stackedLayout_->addWidget(createContainer(characterFrame_));
 
 	mainLayout_->addWidget(titlePanel_);
 	mainLayout_->addLayout(bodyLayout_, 1);
 
 	bodyLayout_->addWidget(mainPanel_);
-	bodyLayout_->addStretch(1);
+	bodyLayout_->addLayout(stackedLayout_, 1);
 
 
-	
+	connect(mainPanel_, &MainPanel::sigPageChanged, this, &MainFrame::onPageChanged);
 }
 
 void MainFrame::paintEvent(QPaintEvent* e)
@@ -193,4 +201,29 @@ bool MainFrame::onHandleNCHitTest(const QByteArray& eventType, void* message, qi
 		return true;
 	}
 	return false;
+}
+
+QWidget* MainFrame::createContainer(QWidget* widget)
+{
+	QScrollArea* ret = new QScrollArea(this);
+	ret->setObjectName("FrameContainer");
+	ret->setWidget(widget);
+	ret->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+	return ret;
+}
+
+void MainFrame::onPageChanged(PageType type)
+{
+	switch (type)
+	{
+	case PageType::Home:
+		stackedLayout_->setCurrentIndex(homeFrameIndex_);
+		break;
+	case PageType::Character:
+		stackedLayout_->setCurrentIndex(characterFrameIndex_);
+		break;
+	default:
+		break;
+	}
 }

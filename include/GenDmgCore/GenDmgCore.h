@@ -1,12 +1,9 @@
 #ifndef GEN_DMG_CORE_H
 #define GEN_DMG_CORE_H
 
-#ifdef MAKE_AS_DLL
-#  define DLL_EXPORT __declspec(dllexport)
-#else
-#  define DLL_EXPORT __declspec(dllimport)
-#endif
-
+#include "CoreDefine.h"
+#include <vector>
+#include "CharacterBrief.h"
 
 class GenDmgCore
 {
@@ -14,7 +11,7 @@ public:
 	DLL_EXPORT static GenDmgCore* getInstance();
 	DLL_EXPORT void init();
 	DLL_EXPORT void uninit();
-
+	DLL_EXPORT std::vector<CharacterBrief> getAllCharacterBrief();
 	~GenDmgCore();
 private:
 	GenDmgCore();

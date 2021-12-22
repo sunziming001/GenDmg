@@ -174,6 +174,8 @@ XCOPY $(SolutionDir)lib\sqlite3\sqlite3.dll $(DeployDir) /s /d /y</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgCore\CharacterBrief.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\CharacterLvProp.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\CoreDefine.h" />
     <ClInclude Include="..\..\include\GenDmgCore\CoreLogger.h" />
     <ClInclude Include="..\..\include\GenDmgCore\DamageCell.h" />
     <ClInclude Include="..\..\include\GenDmgCore\DamageStream.h" />
@@ -183,6 +185,7 @@ XCOPY $(SolutionDir)lib\sqlite3\sqlite3.dll $(DeployDir) /s /d /y</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GenDmgCore\CharacterBrief.cpp" />
+    <ClCompile Include="..\..\src\GenDmgCore\CharacterLvProp.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\DamageStream.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\DBHelper.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp" />
