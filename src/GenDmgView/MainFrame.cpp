@@ -208,8 +208,8 @@ QWidget* MainFrame::createContainer(QWidget* widget)
 	QScrollArea* ret = new QScrollArea(this);
 	ret->setObjectName("FrameContainer");
 	ret->setWidget(widget);
-	ret->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-
+	ret->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+	ret->setWidgetResizable(true);
 	return ret;
 }
 

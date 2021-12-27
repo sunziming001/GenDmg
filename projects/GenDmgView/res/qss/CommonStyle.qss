@@ -101,7 +101,6 @@ QTableView#LvPropsTableView{
 	border-top: 1px solid #000000;
 	border-left: 1px solid #000000;
 	padding:0px;
-	max-width:450px;
 	min-width:450px;
 	max-height:250px;
 	min-height:250px;

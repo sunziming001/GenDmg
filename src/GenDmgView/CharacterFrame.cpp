@@ -26,6 +26,8 @@ CharacterFrame::CharacterFrame(QWidget* parent)
 	mainLayout_->addWidget(configView_);
 	mainLayout_->addWidget(tvLvProps_);
 	mainLayout_->addStretch(1);
+
+	this->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 }
 
 CharacterFrame::~CharacterFrame()
@@ -87,10 +89,9 @@ QTableView* CharacterFrame::createLvPropTable()
 
 	tvLvProps_->horizontalHeader()->setVisible(false);
 	tvLvProps_->verticalHeader()->setVisible(false);
-	tvLvProps_->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-	tvLvProps_->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-	tvLvProps_->horizontalHeader()->setDefaultSectionSize(50);
-	tvLvProps_->verticalHeader()->setDefaultSectionSize(25);
+	tvLvProps_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+	tvLvProps_->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
 	tvLvProps_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	tvLvProps_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	
@@ -99,6 +100,7 @@ QTableView* CharacterFrame::createLvPropTable()
 	tvLvProps_->setSpan(0, 5, 1, 2);
 	tvLvProps_->setSpan(0, 7, 1, 2);
 	tvLvProps_->setSpan(0, 0, 2, 1);
+	tvLvProps_->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
 	return tvLvProps_;
 }
 

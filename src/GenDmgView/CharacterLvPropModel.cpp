@@ -115,12 +115,37 @@ bool CharacterLvPropModel::isSpecialPropIndex(const QModelIndex& index)
 
 bool CharacterLvPropModel::isIntIndex(const QModelIndex& index)
 {
-	return index.row() >= 2 && index.column() <= 6 && index.column() >= 1;
+	int lv = getIndexLv(index);
+	bool isBreak = isIndexBreak(index);
+	if (lv == 1 && isBreak == false)
+	{
+		return false;
+	}
+	else if (lv == 90 && isBreak == true)
+	{
+		return false;
+	}
+	else {
+		return index.row() >= 2 && index.column() <= 6 && index.column() >= 1;
+	}
+	
 }
 
 bool CharacterLvPropModel::isDoubleIndex(const QModelIndex& index)
 {
-	return index.row() >= 2 && index.column() >= 7;
+	int lv = getIndexLv(index);
+	bool isBreak = isIndexBreak(index);
+	if (lv == 1 && isBreak == false)
+	{
+		return false;
+	}
+	else if (lv == 90 && isBreak == true)
+	{
+		return false;
+	}
+	else {
+		return index.row() >= 2 && index.column() >= 7;
+	}
 }
 
 bool CharacterLvPropModel::isDefIndex(const QModelIndex& index)
