@@ -83,8 +83,11 @@ QComboBox* CharacterFrame::createCharacterSearcher()
 QTableView* CharacterFrame::createLvPropTable()
 {
 	tvLvProps_ = new QTableView(this);
+	tvLvPropsModel_ = new CharacterLvPropModel(-1, this);
+
 	tvLvProps_->setObjectName("LvPropsTableView");
 
+	tvLvProps_->setModel(tvLvPropsModel_);
 	tvLvProps_->setItemDelegate(new CharacterLvPropDelegate(tvLvProps_));
 
 	tvLvProps_->horizontalHeader()->setVisible(false);
@@ -123,14 +126,9 @@ void CharacterFrame::onCharacterSearcherIndexChaged(int indx)
 		lbCharacterImg_->setPixmap(img);
 	}
 
-	if (tvLvProps_)
+	if (tvLvPropsModel_)
 	{
-		auto oldModel = tvLvProps_->model();
-		tvLvProps_->setModel(new CharacterLvPropModel(charId, this));
-		if (oldModel)
-		{
-			oldModel->deleteLater();
-		}
+		tvLvPropsModel_->resetCharacterId(charId);
 	}
 	
 }

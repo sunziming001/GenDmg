@@ -222,6 +222,15 @@ bool CharacterLvPropModel::setData(const QModelIndex& index, const QVariant& val
 	return ret;
 }
 
+void CharacterLvPropModel::resetCharacterId(int charId)
+{
+	charId_ = charId;
+	lvProps_ = GenDmgCore::getInstance()->getCharacterLvProps(charId);
+	QModelIndex topLeft = createIndex(0, 0);
+	QModelIndex bottomRight = createIndex(RowCnt-1, ColCnt-1);
+	dataChanged(topLeft, bottomRight);
+}
+
 QVariant CharacterLvPropModel::getDisplayData(const QModelIndex& index) const
 {
 	QVariant ret = "--";

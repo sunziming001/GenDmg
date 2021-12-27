@@ -18,6 +18,7 @@ public:
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 	Qt::ItemFlags flags(const QModelIndex& index) const override;
 	bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole)override;
+	void resetCharacterId(int charId);
 
 	static QString specialPropTypeToString(SpecialPropType type);
 	static bool isSpecialPropIndex(const QModelIndex& index);

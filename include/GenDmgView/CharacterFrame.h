@@ -10,6 +10,8 @@
 #include <QAbstractListModel>
 #include <QTableView>
 
+class CharacterLvPropModel;
+
 class CharacterFrame:public QFrame
 {
 	Q_OBJECT
@@ -33,6 +35,7 @@ private:
 	QVBoxLayout* configSearchLayout_ = nullptr;
 
 	QTableView* tvLvProps_ = nullptr;
+	CharacterLvPropModel* tvLvPropsModel_ = nullptr;
 
 	std::vector<CharacterBrief> allCharacterBrief_;
 	
