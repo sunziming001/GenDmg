@@ -145,7 +145,7 @@ void DBHelper::insertLvProps(int charId, const std::set<CharacterLvProp>& lvProp
 		iter++)
 	{
 		sqlite3_bind_int(pstmt, 1, charId);
-		sqlite3_bind_int(pstmt, 2, static_cast<int>(iter->getIsBreak()));
+		sqlite3_bind_int(pstmt, 2, iter->getIsBreak()?1:0);
 		sqlite3_bind_int(pstmt, 3, iter->getLv());
 		sqlite3_bind_int(pstmt, 4, iter->getAtk());
 		sqlite3_bind_int(pstmt, 5, iter->getDef());
@@ -200,7 +200,7 @@ std::set<CharacterLvProp> DBHelper::selectLvProps(int charId)
 		while (sqlite3_step(pstmt) == SQLITE_ROW) {
 			//is_break, lv, atk, def, hp, sp_prop_type, sp_prop
 			CharacterLvProp prop;
-			prop.setIsBreak(static_cast<bool>(sqlite3_column_int(pstmt, 0)));
+			prop.setIsBreak(sqlite3_column_int(pstmt, 0)==1);
 			prop.setLv(sqlite3_column_int(pstmt, 1));
 			prop.setAtk(sqlite3_column_int(pstmt, 2));
 			prop.setDef(sqlite3_column_int(pstmt, 3));
@@ -212,7 +212,72 @@ std::set<CharacterLvProp> DBHelper::selectLvProps(int charId)
 		}
 	}
 
+	sqlite3_close(db);
+	return ret;
+}
 
+bool DBHelper::updateLvProps(int charId, const std::set<CharacterLvProp>& lvProps)
+{
+	bool ret = true;
+	sqlite3* db = nullptr;
+	sqlite3_stmt* pstmt = nullptr;
+	const char* zErrMsg = nullptr;
+	const char* pTail = nullptr;
+	int rc = 0;
+	std::string sql = "update tb_char_lv_detail set "
+		"atk = ?,"
+		"def = ?,"
+		"hp = ?,"
+		"sp_prop_type = ?,"
+		"sp_prop = ?"
+		" where char_id = ? and is_break = ? and lv = ?";
+
+	rc = sqlite3_open(DB_FILE_PATH, &db);
+	if (rc) {
+		std::string errLog = std::string("open error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		return false;
+	}
+
+	rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &pstmt, NULL);
+	if (rc != SQLITE_OK)
+	{
+		std::string errLog = std::string("prepare updateLvProps error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		sqlite3_close(db);
+		ret = false;
+	}
+	else {
+		for (auto iter = lvProps.begin();
+			iter != lvProps.end();
+			iter++)
+		{
+			sqlite3_bind_int(pstmt, 1, iter->getAtk());
+			sqlite3_bind_int(pstmt, 2, iter->getDef());
+			sqlite3_bind_int(pstmt, 3, iter->getHp());
+			sqlite3_bind_int(pstmt, 4, static_cast<int>(iter->getSpPropType()));
+			sqlite3_bind_double(pstmt, 5, iter->getSpPropValue());
+
+			sqlite3_bind_int(pstmt, 6, charId);
+			sqlite3_bind_int(pstmt, 7, iter->getIsBreak() ? 1 : 0);
+			sqlite3_bind_int(pstmt, 8, iter->getLv());
+
+			rc = sqlite3_step(pstmt);
+			if (SQLITE_DONE != rc)
+			{
+				zErrMsg = sqlite3_errmsg(db);
+				std::string errLog = std::string("update tb_char_lv_detail error: ") + sqlite3_errmsg(db);
+				LOG_ERROR("DBHelper", errLog.c_str());
+				ret = false;
+				break;
+			}
+			sqlite3_reset(pstmt);
+		}
+		sqlite3_finalize(pstmt);
+		pstmt = nullptr;
+	}
+
+	sqlite3_close(db);
 	return ret;
 }
 

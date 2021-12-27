@@ -45,6 +45,13 @@ std::vector<CharacterLvProp> GenDmgCore::getCharacterLvProps(int charId)
 	return std::vector<CharacterLvProp>(props.begin(), props.end());
 }
 
+
+bool GenDmgCore::updateCharacterLvProps(int charId, std::vector<CharacterLvProp> props)
+{
+	std::set<CharacterLvProp> propSet(props.begin(), props.end());
+	return DBHelper::getInstance()->updateLvProps(charId, propSet);
+}
+
 GenDmgCore::~GenDmgCore()
 {
 

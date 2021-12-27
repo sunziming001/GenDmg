@@ -20,6 +20,8 @@ enum class SpecialPropType
 	StoneAddition,
 	PhysicAddition,
 	HealRate,
+
+	Count
 };
 
 

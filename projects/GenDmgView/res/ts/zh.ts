@@ -11,7 +11,7 @@
 <context>
     <name>CharacterFrame</name>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="72"/>
+        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="73"/>
         <source>input character name here</source>
         <translation>在此输入角色名</translation>
     </message>
@@ -19,107 +19,107 @@
 <context>
     <name>CharacterLvPropModel</name>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="43"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="205"/>
         <source>level</source>
         <translation>等级</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="47"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="209"/>
         <source>max hp</source>
         <translation>生命上限</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="51"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="213"/>
         <source>max atk</source>
         <translation>攻击力</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="55"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="217"/>
         <source>max def</source>
         <translation>防御力</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="65"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="230"/>
         <source>bef break</source>
         <translation>突破前</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="68"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="227"/>
         <source>aft break</source>
         <translation>突破后</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="114"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="60"/>
         <source>AtkPercent</source>
         <translation>攻击加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="117"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="63"/>
         <source>DefPercent</source>
         <translation>防御加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="120"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="66"/>
         <source>HpPercent</source>
         <translation>生命加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="123"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="69"/>
         <source>CritRate</source>
         <translation>暴击加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="126"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="72"/>
         <source>CritDmgRate</source>
         <translation>暴伤加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="129"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="75"/>
         <source>ChargeEffect</source>
         <translation>充能效率</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="132"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="78"/>
         <source>FireAdditon</source>
         <translation>火伤加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="135"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="81"/>
         <source>WaterAddition</source>
         <translation>水伤加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="138"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="84"/>
         <source>WookAddition</source>
         <translation>草伤加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="141"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="87"/>
         <source>ThunderAddition</source>
         <translation>雷伤加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="144"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="90"/>
         <source>WindAddition</source>
         <translation>风伤加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="147"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="93"/>
         <source>IceAddition</source>
         <translation>冰伤加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="150"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="96"/>
         <source>StoneAddition</source>
         <translation>岩伤加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="153"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="99"/>
         <source>PhysicAddition</source>
         <translation>物伤加成</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="156"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="102"/>
         <source>HealRate</source>
         <translation>治疗加成</translation>
     </message>

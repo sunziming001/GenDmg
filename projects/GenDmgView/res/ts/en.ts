@@ -4,7 +4,7 @@
 <context>
     <name>CharacterFrame</name>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="72"/>
+        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="73"/>
         <source>input character name here</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12,107 +12,107 @@
 <context>
     <name>CharacterLvPropModel</name>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="43"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="205"/>
         <source>level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="47"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="209"/>
         <source>max hp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="51"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="213"/>
         <source>max atk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="55"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="217"/>
         <source>max def</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="65"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="230"/>
         <source>bef break</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="68"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="227"/>
         <source>aft break</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="114"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="60"/>
         <source>AtkPercent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="117"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="63"/>
         <source>DefPercent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="120"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="66"/>
         <source>HpPercent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="123"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="69"/>
         <source>CritRate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="126"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="72"/>
         <source>CritDmgRate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="129"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="75"/>
         <source>ChargeEffect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="132"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="78"/>
         <source>FireAdditon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="135"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="81"/>
         <source>WaterAddition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="138"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="84"/>
         <source>WookAddition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="141"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="87"/>
         <source>ThunderAddition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="144"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="90"/>
         <source>WindAddition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="147"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="93"/>
         <source>IceAddition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="150"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="96"/>
         <source>StoneAddition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="153"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="99"/>
         <source>PhysicAddition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="156"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="102"/>
         <source>HealRate</source>
         <translation type="unfinished"></translation>
     </message>

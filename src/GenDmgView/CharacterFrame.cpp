@@ -6,6 +6,7 @@
 #include "CharacterLvPropModel.h"
 #include <QTableView>
 #include <QHeaderView>
+#include "CharacterLvPropDelegate.h"
 
 CharacterFrame::CharacterFrame(QWidget* parent)
 	:QFrame(parent)
@@ -81,6 +82,8 @@ QTableView* CharacterFrame::createLvPropTable()
 {
 	tvLvProps_ = new QTableView(this);
 	tvLvProps_->setObjectName("LvPropsTableView");
+
+	tvLvProps_->setItemDelegate(new CharacterLvPropDelegate(tvLvProps_));
 
 	tvLvProps_->horizontalHeader()->setVisible(false);
 	tvLvProps_->verticalHeader()->setVisible(false);

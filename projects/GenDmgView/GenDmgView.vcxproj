@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\src\GenDmgView\AwesomeFontManager.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\CharacterBriefModel.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\CharacterFrame.cpp" />
+    <ClCompile Include="..\..\src\GenDmgView\CharacterLvPropDelegate.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\CharacterLvPropModel.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\GenDmgApp.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\main.cpp" />
@@ -35,6 +36,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgView\AwesomeFontManager.h" />
     <QtMoc Include="..\..\include\GenDmgView\CharacterLvPropModel.h" />
+    <QtMoc Include="..\..\include\GenDmgView\CharacterLvPropDelegate.h" />
     <ClInclude Include="..\..\include\GenDmgView\ViewI18n.h" />
     <QtMoc Include="..\..\include\GenDmgView\CharacterBriefModel.h" />
     <QtMoc Include="..\..\include\GenDmgView\CharacterFrame.h" />
