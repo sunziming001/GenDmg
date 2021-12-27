@@ -4,6 +4,7 @@
 #include "CharacterLvPropModel.h"
 #include <QMetaProperty>
 #include <QLineEdit>
+#include <QAbstractItemView>
 
 CharacterLvPropDelegate::CharacterLvPropDelegate(QObject* parent)
 	:QStyledItemDelegate(parent)
@@ -18,15 +19,15 @@ QWidget* CharacterLvPropDelegate::createEditor(
 {
 	if (CharacterLvPropModel::isSpecialPropIndex(index))
 	{
-		return createLvPropComboBox(parent);
+		return createLvPropComboBox(parent, index);
 	}
 	else if (CharacterLvPropModel::isIntIndex(index))
 	{
-		return createIntLineEdit(parent);
+		return createIntLineEdit(parent, index);
 	}
 	else if (CharacterLvPropModel::isDoubleIndex(index))
 	{
-		return createDoubleLineEdit(parent);
+		return createDoubleLineEdit(parent, index);
 	}
 	else {
 		return QStyledItemDelegate::createEditor(parent, option, index);
@@ -70,7 +71,26 @@ void CharacterLvPropDelegate::setModelData(
 	}
 }
 
-QWidget* CharacterLvPropDelegate::createLvPropComboBox(QWidget* parent)const
+void CharacterLvPropDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
+{
+	if (CharacterLvPropModel::isSpecialPropIndex(index))
+	{
+		
+	}
+	else if (CharacterLvPropModel::isIntIndex(index))
+	{
+
+	}
+	else if (CharacterLvPropModel::isDoubleIndex(index))
+	{
+
+	}
+	else {
+		QStyledItemDelegate::setEditorData(editor, index);
+	}
+}
+
+QWidget* CharacterLvPropDelegate::createLvPropComboBox(QWidget* parent, const QModelIndex& index)const
 {
 	QComboBox* ret = new QComboBox(parent);
 	
@@ -81,19 +101,37 @@ QWidget* CharacterLvPropDelegate::createLvPropComboBox(QWidget* parent)const
 		QString text = CharacterLvPropModel::specialPropTypeToString(type);
 		ret->insertItem(i, text,i);
 	}
+	ret->setCurrentIndex(getVarient(index,Qt::EditRole).toInt());
 	return ret;
 }
 
-QWidget* CharacterLvPropDelegate::createIntLineEdit(QWidget* parent) const
+QWidget* CharacterLvPropDelegate::createIntLineEdit(QWidget* parent, const QModelIndex& index) const
 {
 	QLineEdit* le = new QLineEdit(parent);
 	le->setValidator(new QIntValidator(0,INT_MAX,le));
+	QString txt =QString::number(getVarient(index, Qt::EditRole).toInt());
+	le->setText(txt);
 	return le;
 }
 
-QWidget* CharacterLvPropDelegate::createDoubleLineEdit(QWidget* parent) const
+QWidget* CharacterLvPropDelegate::createDoubleLineEdit(QWidget* parent, const QModelIndex& index) const
 {
 	QLineEdit* le = new QLineEdit(parent);
 	le->setValidator(new QDoubleValidator(le));
+	le->setText(QString::number(getVarient(index, Qt::EditRole).toDouble()));
 	return le;
+}
+
+QVariant CharacterLvPropDelegate::getVarient(const QModelIndex& index, int role) const
+{
+	QVariant ret;
+	QAbstractItemView* v = dynamic_cast<QAbstractItemView*>(parent());
+	if(v){
+		auto m = v->model();
+		if (m)
+		{
+			ret = m->data(index, role);
+		}
+	}
+	return ret;
 }

@@ -40,6 +40,7 @@ private:
 	QString getSpecialPropName()const;
 
 	QString getLvPropString(const QModelIndex& index)const;
+	QVariant getLvPropEditData(const QModelIndex& index)const;
 	void setLvPropVarient(const QModelIndex& index, const QVariant& value);
 	const CharacterLvProp& getLvProp(const QModelIndex& index, bool& isOk)const;
 	CharacterLvProp& getLvProp(const QModelIndex& index, bool& isOk);

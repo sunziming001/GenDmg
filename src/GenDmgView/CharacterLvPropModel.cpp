@@ -287,6 +287,9 @@ QVariant CharacterLvPropModel::getEditData(const QModelIndex& index) const
 	{
 		ret =static_cast<int>(lvProps_[0].getSpPropType());
 	}
+	else if(isIntIndex(index) || isDoubleIndex(index)) {
+		ret = getLvPropEditData(index);
+	}
 	return ret;
 }
 
@@ -375,6 +378,35 @@ QString CharacterLvPropModel::getLvPropString(const QModelIndex& index) const
 	}
 
 	
+	return ret;
+}
+
+QVariant CharacterLvPropModel::getLvPropEditData(const QModelIndex& index) const
+{
+	QVariant ret;
+	bool isOk = false;
+	const CharacterLvProp& prop = getLvProp(index, isOk);
+	if (!isOk)
+		return ret;
+
+	if (isDefIndex(index))
+	{
+		ret = prop.getDef();
+	}
+	else if (isAtkIndex(index))
+	{
+		ret = prop.getAtk();
+	}
+	else if (isHpIndex(index))
+	{
+		ret = prop.getHp();
+	}
+	else if (isSpecialPropValIndex(index))
+	{
+		ret = prop.getSpPropValue();
+	}
+
+
 	return ret;
 }
 
