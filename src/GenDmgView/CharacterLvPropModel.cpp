@@ -377,7 +377,7 @@ QString CharacterLvPropModel::getLvPropString(const QModelIndex& index) const
 		ret = QString::number(precent)+"%";
 	}
 
-	
+
 	return ret;
 }
 

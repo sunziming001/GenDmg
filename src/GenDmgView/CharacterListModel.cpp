@@ -1,22 +1,22 @@
-#include "CharacterBriefModel.h"
+#include "CharacterListModel.h"
 
-CharacterBriefModel::CharacterBriefModel(QObject* parent /*= nullptr*/)
+CharacterListModel::CharacterListModel(QObject* parent /*= nullptr*/)
 {
 	briefs_ = GenDmgCore::getInstance()->getAllCharacterBrief();
 	briefs_.push_back(CharacterBrief());
 }
 
-CharacterBriefModel::~CharacterBriefModel()
+CharacterListModel::~CharacterListModel()
 {
 
 }
 
-int CharacterBriefModel::rowCount(const QModelIndex&) const
+int CharacterListModel::rowCount(const QModelIndex&) const
 {
 	return briefs_.size();
 }
 
-QVariant CharacterBriefModel::data(const QModelIndex& index, int role /*= Qt::DisplayRole*/) const
+QVariant CharacterListModel::data(const QModelIndex& index, int role /*= Qt::DisplayRole*/) const
 {
 	QVariant value;
 	int r = index.row();

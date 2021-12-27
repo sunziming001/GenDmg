@@ -22,6 +22,7 @@ private:
 	QFrame* createConfigView();
 	QComboBox* createCharacterSearcher();
 	QTableView* createLvPropTable();
+	QTableView* createBriefTable();
 	void onCharacterSearcherIndexChaged(int indx);
 private:
 	QVBoxLayout* mainLayout_ =nullptr;
@@ -34,6 +35,7 @@ private:
 	QComboBox* cbCharacterSeacher_ = nullptr;
 	QVBoxLayout* configSearchLayout_ = nullptr;
 
+	QTableView* tvBreif_ = nullptr;
 	QTableView* tvLvProps_ = nullptr;
 	CharacterLvPropModel* tvLvPropsModel_ = nullptr;
 

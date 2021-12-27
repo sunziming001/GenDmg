@@ -1,6 +1,6 @@
 #include "CharacterFrame.h"
 #include "AwesomeFontManager.h"
-#include "CharacterBriefModel.h"
+#include "CharacterListModel.h"
 #include "GenDmgCore.h"
 #include <QLineEdit>
 #include "CharacterLvPropModel.h"
@@ -17,13 +17,15 @@ CharacterFrame::CharacterFrame(QWidget* parent)
 	mainLayout_->setContentsMargins(2, 4, 2, 0);
 	this->setLayout(mainLayout_);
 
+	tvBreif_ = createBriefTable();
 	tvLvProps_ = createLvPropTable();
-
+	
 	configView_ = createConfigView();
 
 
 
 	mainLayout_->addWidget(configView_);
+	mainLayout_->addWidget(tvBreif_);
 	mainLayout_->addWidget(tvLvProps_);
 	mainLayout_->addStretch(1);
 
@@ -73,7 +75,7 @@ QComboBox* CharacterFrame::createCharacterSearcher()
 	cbCharacterSeacher_->setObjectName("CharacterSearcherComboBox");
 	cbCharacterSeacher_->setEditable(true);
 	cbCharacterSeacher_->lineEdit()->setPlaceholderText(tr("input character name here"));
-	cbCharacterSeacher_->setModel(new CharacterBriefModel(this));
+	cbCharacterSeacher_->setModel(new CharacterListModel(this));
 	
 	connect(cbCharacterSeacher_, &QComboBox::currentIndexChanged, this, &CharacterFrame::onCharacterSearcherIndexChaged);
 	cbCharacterSeacher_->setCurrentIndex(cbCharacterSeacher_->count());
@@ -105,6 +107,22 @@ QTableView* CharacterFrame::createLvPropTable()
 	tvLvProps_->setSpan(0, 0, 2, 1);
 	tvLvProps_->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
 	return tvLvProps_;
+}
+
+QTableView* CharacterFrame::createBriefTable()
+{
+	tvBreif_ = new QTableView(this);
+	tvBreif_->setObjectName("CharacterBriefTableView");
+
+	tvBreif_->horizontalHeader()->setVisible(false);
+	tvBreif_->verticalHeader()->setVisible(false);
+	tvBreif_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+	tvBreif_->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+	tvBreif_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	tvBreif_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+	return tvBreif_;
 }
 
 void CharacterFrame::onCharacterSearcherIndexChaged(int indx)

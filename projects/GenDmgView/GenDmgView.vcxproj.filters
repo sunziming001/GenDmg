@@ -58,7 +58,7 @@
     <ClCompile Include="..\..\src\GenDmgView\CharacterFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GenDmgView\CharacterBriefModel.cpp">
+    <ClCompile Include="..\..\src\GenDmgView\CharacterListModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GenDmgView\ViewI18n.cpp">
@@ -115,7 +115,7 @@
     <QtMoc Include="..\..\include\GenDmgView\CharacterFrame.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="..\..\include\GenDmgView\CharacterBriefModel.h">
+    <QtMoc Include="..\..\include\GenDmgView\CharacterListModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\..\include\GenDmgView\CharacterLvPropModel.h">

@@ -1,5 +1,5 @@
-#ifndef _CHARACTER_BRIEF_MODEL_H
-#define _CHARACTER_BRIEF_MODEL_H
+#ifndef _CHARACTER_LIST_MODEL_H
+#define _CHARACTER_LIST_MODEL_H
 
 #include <QAbstractListModel>
 #include "GenDmgCore.h"
@@ -10,12 +10,12 @@ enum class CharacterBriefModelRole
 	ImageUrl,
 };
 
-class CharacterBriefModel :public QAbstractListModel
+class CharacterListModel :public QAbstractListModel
 {
 	Q_OBJECT
 public:
-	CharacterBriefModel( QObject* parent = nullptr);
-	~CharacterBriefModel();
+	CharacterListModel( QObject* parent = nullptr);
+	~CharacterListModel();
 
 	int rowCount(const QModelIndex&) const override;
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
