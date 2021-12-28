@@ -76,7 +76,6 @@ bool CharacterBriefModel::setData(const QModelIndex& index, const QVariant& valu
 
 	if (ret)
 	{
-		GenDmgCore::getInstance()->updateCharacterBreif(brief_);
 		emit dataChanged(index, index);
 	}
 	return ret;
@@ -143,6 +142,16 @@ bool CharacterBriefModel::isDamageTypeIndex(const QModelIndex& index)
 bool CharacterBriefModel::isImgPathIndex(const QModelIndex& index)
 {
 	return index.row() == 1 && index.column() == 3;
+}
+
+void CharacterBriefModel::saveToDB()
+{
+	GenDmgCore::getInstance()->updateCharacterBreif(brief_);
+}
+
+void CharacterBriefModel::resetFromDB()
+{
+	resetCharacterId(brief_.getId());
 }
 
 QVariant CharacterBriefModel::getDisplayRole(const QModelIndex& index)const

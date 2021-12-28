@@ -25,6 +25,9 @@ public:
 	static bool isNameIndex(const QModelIndex& index);
 	static bool isDamageTypeIndex(const QModelIndex& index);
 	static bool isImgPathIndex(const QModelIndex& index);
+
+	void saveToDB();
+	void resetFromDB();
 private:
 	QVariant getDisplayRole(const QModelIndex& index)const;
 	QVariant getEditRole(const QModelIndex& index)const;

@@ -9,6 +9,7 @@
 #include <QComboBox>
 #include <QAbstractListModel>
 #include <QTableView>
+#include <QPushButton>
 
 class CharacterLvPropModel;
 class CharacterBriefModel;
@@ -23,10 +24,16 @@ public:
 private:
 	QFrame* createConfigView();
 	QComboBox* createCharacterSearcher();
-	QTableView* createLvPropTable();
-	QTableView* createBriefTable();
+	QFrame* createLvPropTable();
+	QFrame* createBriefTable();
 	void onCharacterSearcherIndexChaged(int indx);
 	void refreshCharacterImage();
+
+	
+	QPushButton* createOperBtn(QWidget* parent);
+	QPushButton* createSaveBtn(QWidget* parent);
+	QPushButton* createRevertBtn(QWidget* parent);
+
 private:
 	QVBoxLayout* mainLayout_ =nullptr;
 

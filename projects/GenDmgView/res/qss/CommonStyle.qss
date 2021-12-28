@@ -114,3 +114,25 @@ QTableView#CharacterBriefTableView{
 	max-height:50px;
 	min-height:50px;
 }
+
+QPushButton#CharacterOperButton{
+	background-color: transparent;
+	min-width:26px;
+	max-width:26px;
+	min-height:26px;
+	max-height:26px;
+	margin: 0px; 
+	border-radius: 13px;
+	border: 1px solid #dcdcdc;
+}
+
+
+QPushButton#CharacterOperButton:hover
+{
+	background-color:#faedcd;
+}
+
+QPushButton#CharacterOperButton:pressed
+{
+	background-color:#d4a373;
+}

@@ -19,16 +19,16 @@ CharacterFrame::CharacterFrame(QWidget* parent)
 	mainLayout_->setContentsMargins(2, 4, 2, 0);
 	this->setLayout(mainLayout_);
 
-	tvBrief_ = createBriefTable();
-	tvLvProps_ = createLvPropTable();
+	QFrame *briefFrame = createBriefTable();
+	QFrame *lvPropFrame = createLvPropTable();
 	
 	configView_ = createConfigView();
 
 
 
 	mainLayout_->addWidget(configView_);
-	mainLayout_->addWidget(tvBrief_);
-	mainLayout_->addWidget(tvLvProps_);
+	mainLayout_->addWidget(briefFrame);
+	mainLayout_->addWidget(lvPropFrame);
 	mainLayout_->addStretch(1);
 
 	this->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
@@ -85,7 +85,7 @@ QComboBox* CharacterFrame::createCharacterSearcher()
 	return cbCharacterSeacher_;
 }
 
-QTableView* CharacterFrame::createLvPropTable()
+QFrame* CharacterFrame::createLvPropTable()
 {
 	tvLvProps_ = new QTableView(this);
 	tvLvPropsModel_ = new CharacterLvPropModel(-1, this);
@@ -112,9 +112,20 @@ QTableView* CharacterFrame::createLvPropTable()
 	return tvLvProps_;
 }
 
-QTableView* CharacterFrame::createBriefTable()
+QFrame* CharacterFrame::createBriefTable()
 {
-	tvBrief_ = new QTableView(this);
+	QFrame* frame = new QFrame(this);
+	QVBoxLayout* frameLayout = new QVBoxLayout;
+	frameLayout->setContentsMargins(0, 0, 0, 0);
+
+	QHBoxLayout* btnLayout = new QHBoxLayout;
+	btnLayout->setContentsMargins(0, 0, 0, 0);
+
+	QPushButton* btnSave = createSaveBtn(frame);
+	QPushButton* btnRevert = createRevertBtn(frame);
+
+	tvBrief_ = new QTableView(frame);
+
 	tvBriefModel_ = new CharacterBriefModel(-1,tvBrief_);
 
 	tvBrief_->setObjectName("CharacterBriefTableView");
@@ -130,8 +141,19 @@ QTableView* CharacterFrame::createBriefTable()
 	tvBrief_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	tvBrief_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-	connect(tvBriefModel_, &CharacterBriefModel::dataChanged,
-		this, [this]() {
+	btnLayout->addWidget(btnSave);
+	btnLayout->addWidget(btnRevert);
+	btnLayout->addStretch(1);
+
+	frameLayout->addLayout(btnLayout);
+	frameLayout->addWidget(tvBrief_);
+	frameLayout->addStretch(1);
+
+	frame->setLayout(frameLayout);
+
+	connect(btnSave, &QPushButton::clicked, this, [this]() {
+		tvBriefModel_->saveToDB();
+
 		if (cbCharacterListModel_)
 		{
 			cbCharacterListModel_->refresh();
@@ -139,7 +161,12 @@ QTableView* CharacterFrame::createBriefTable()
 		}
 	});
 
-	return tvBrief_;
+	connect(btnRevert, &QPushButton::clicked, this, [this]() {
+		tvBriefModel_->resetFromDB();
+	});
+
+
+	return frame;
 }
 
 void CharacterFrame::onCharacterSearcherIndexChaged(int indx)
@@ -179,4 +206,32 @@ void CharacterFrame::refreshCharacterImage()
 		img = img.scaled(lbCharacterImg_->size());
 		lbCharacterImg_->setPixmap(img);
 	}
+}
+
+QPushButton* CharacterFrame::createOperBtn(QWidget* parent)
+{
+	QPushButton* btn = new QPushButton(parent);
+	btn->setObjectName("CharacterOperButton");
+	btn->setIconSize(QSize(23, 23));
+	return btn;
+}
+
+QPushButton* CharacterFrame::createSaveBtn(QWidget* parent)
+{
+	AwesomeFontManager* afm = AwesomeFontManager::getInstance();
+	QtAwesome* qa = afm->getQtAwesome();
+	QPushButton* btn = createOperBtn(parent);
+	btn->setIcon(qa->icon(fa::save));
+
+	return btn;
+}
+
+QPushButton* CharacterFrame::createRevertBtn(QWidget* parent)
+{
+	AwesomeFontManager* afm = AwesomeFontManager::getInstance();
+	QtAwesome* qa = afm->getQtAwesome();
+	QPushButton* btn = createOperBtn(parent);
+	btn->setIcon(qa->icon(fa::reply));
+
+	return btn;
 }
