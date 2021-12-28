@@ -231,6 +231,16 @@ void CharacterLvPropModel::resetCharacterId(int charId)
 	dataChanged(topLeft, bottomRight);
 }
 
+void CharacterLvPropModel::saveToDB()
+{
+	GenDmgCore::getInstance()->updateCharacterLvProps(charId_, lvProps_);
+}
+
+void CharacterLvPropModel::resetFromDB()
+{
+	resetCharacterId(charId_);
+}
+
 QVariant CharacterLvPropModel::getDisplayData(const QModelIndex& index) const
 {
 	QVariant ret = "--";
@@ -309,7 +319,6 @@ bool CharacterLvPropModel::setEditData(const QModelIndex& index, const QVariant&
 		{
 			prop.setSpPropType(type);
 		}
-		GenDmgCore::getInstance()->updateCharacterLvProps(charId_, lvProps_);
 		ret = true;
 	}
 	else if (isIntIndex(index) || isDoubleIndex(index))
@@ -317,12 +326,6 @@ bool CharacterLvPropModel::setEditData(const QModelIndex& index, const QVariant&
 		bool isOk = false;
 		setLvPropVarient(index, value);
 		CharacterLvProp prop = getLvProp(index, isOk);
-
-		if (isOk) {
-
-			
-			GenDmgCore::getInstance()->updateCharacterLvProps(charId_, { prop });
-		}
 		
 		ret = true;
 	}

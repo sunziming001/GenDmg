@@ -28,6 +28,7 @@ CharacterFrame::CharacterFrame(QWidget* parent)
 
 	mainLayout_->addWidget(configView_);
 	mainLayout_->addWidget(briefFrame);
+	mainLayout_->addSpacing(5);
 	mainLayout_->addWidget(lvPropFrame);
 	mainLayout_->addStretch(1);
 
@@ -87,8 +88,18 @@ QComboBox* CharacterFrame::createCharacterSearcher()
 
 QFrame* CharacterFrame::createLvPropTable()
 {
-	tvLvProps_ = new QTableView(this);
+	QFrame* frame = new QFrame(this);
+	tvLvProps_ = new QTableView(frame);
 	tvLvPropsModel_ = new CharacterLvPropModel(-1, this);
+
+	QVBoxLayout* frameLayout = new QVBoxLayout;
+	frameLayout->setContentsMargins(0, 0, 0, 0);
+
+	QHBoxLayout* btnLayout = new QHBoxLayout;
+	btnLayout->setContentsMargins(0, 0, 0, 0);
+
+	QPushButton* btnSave = createSaveBtn(frame);
+	QPushButton* btnRevert = createRevertBtn(frame);
 
 	tvLvProps_->setObjectName("LvPropsTableView");
 
@@ -109,7 +120,28 @@ QFrame* CharacterFrame::createLvPropTable()
 	tvLvProps_->setSpan(0, 7, 1, 2);
 	tvLvProps_->setSpan(0, 0, 2, 1);
 	tvLvProps_->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
-	return tvLvProps_;
+	
+
+	btnLayout->addWidget(btnSave);
+	btnLayout->addWidget(btnRevert);
+	btnLayout->addStretch(1);
+
+	frameLayout->addLayout(btnLayout);
+	frameLayout->addWidget(tvLvProps_);
+	frameLayout->addStretch(1);
+
+	frame->setLayout(frameLayout);
+	
+	connect(btnSave, &QPushButton::clicked, this, [this]() {
+		tvLvPropsModel_->saveToDB();
+
+	});
+
+	connect(btnRevert, &QPushButton::clicked, this, [this]() {
+		tvLvPropsModel_->resetFromDB();
+	});
+
+	return frame;
 }
 
 QFrame* CharacterFrame::createBriefTable()

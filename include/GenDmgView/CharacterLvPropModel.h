@@ -20,6 +20,10 @@ public:
 	bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole)override;
 	void resetCharacterId(int charId);
 
+	void saveToDB();
+
+	void resetFromDB();
+
 	static QString specialPropTypeToString(SpecialPropType type);
 	static bool isSpecialPropIndex(const QModelIndex& index);
 	static bool isIntIndex(const QModelIndex& index);
