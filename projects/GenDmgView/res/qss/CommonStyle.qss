@@ -105,3 +105,12 @@ QTableView#LvPropsTableView{
 	max-height:250px;
 	min-height:250px;
 }
+
+QTableView#CharacterBriefTableView{
+	border-top: 1px solid #000000;
+	border-left: 1px solid #000000;
+	padding:0px;
+	min-width:450px;
+	max-height:50px;
+	min-height:50px;
+}

@@ -2,8 +2,7 @@
 
 CharacterListModel::CharacterListModel(QObject* parent /*= nullptr*/)
 {
-	briefs_ = GenDmgCore::getInstance()->getAllCharacterBrief();
-	briefs_.push_back(CharacterBrief());
+	refresh();
 }
 
 CharacterListModel::~CharacterListModel()
@@ -42,5 +41,15 @@ QVariant CharacterListModel::data(const QModelIndex& index, int role /*= Qt::Dis
 	}
 
 	return value;
+}
+
+void CharacterListModel::refresh()
+{
+	briefs_ = GenDmgCore::getInstance()->getAllCharacterBrief();
+	briefs_.push_back(CharacterBrief());
+	QModelIndex topLeft = createIndex(0, 0);
+
+	QModelIndex bottomRight = createIndex(briefs_.size()+1, 1);
+	dataChanged(topLeft, bottomRight);
 }
 

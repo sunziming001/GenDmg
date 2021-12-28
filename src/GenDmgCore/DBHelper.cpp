@@ -120,6 +120,100 @@ std::vector<CharacterBrief> DBHelper::selectAllCharacterBrief()
 	return ret;
 }
 
+CharacterBrief DBHelper::selectCharacterBrief(int charId, bool& isOk)
+{
+	isOk = false;
+
+	CharacterBrief ret;
+	sqlite3* db = nullptr;
+	sqlite3_stmt* pstmt = nullptr;
+	const char* zErrMsg = nullptr;
+	const char* pTail = nullptr;
+	int rc = 0;
+	std::string sql = "select id, name, dmg_type, img_path from tb_char_brief where id = ?;";
+
+	rc = sqlite3_open(DB_FILE_PATH, &db);
+	if (rc) {
+		std::string errLog = std::string("open error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		return ret;
+	}
+
+
+	rc = sqlite3_prepare_v2(db, sql.c_str(), sql.length() + 1, &pstmt, nullptr);
+	if (rc != SQLITE_OK) {
+		zErrMsg = sqlite3_errmsg(db);
+		std::string errLog = std::string("prepare tb_char_brief error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		sqlite3_close(db);
+		return ret;
+	}
+	else {
+		sqlite3_bind_int(pstmt, 1, charId);
+
+		if (sqlite3_step(pstmt) == SQLITE_ROW) {
+			ret.setId(charId);
+			ret.setName((const char*)sqlite3_column_text(pstmt, 1));
+			ret.setDmgType(static_cast<DamageType>(sqlite3_column_int(pstmt, 2)));
+			ret.setImgPath((const char*)sqlite3_column_text(pstmt, 3));
+			isOk = true;
+		}
+
+		sqlite3_reset(pstmt);
+		sqlite3_finalize(pstmt);
+	}
+
+	sqlite3_close(db);
+	return ret;
+}
+
+void DBHelper::updateCharacterBrief(const CharacterBrief& brief)
+{
+	CharacterBrief ret;
+	sqlite3* db = nullptr;
+	sqlite3_stmt* pstmt = nullptr;
+	const char* zErrMsg = nullptr;
+	const char* pTail = nullptr;
+	int rc = 0;
+	std::string sql = "update tb_char_brief set name=?,img_path=?,dmg_type=? where id = ?;";
+	
+	rc = sqlite3_open(DB_FILE_PATH, &db);
+	if (rc != SQLITE_OK) {
+		zErrMsg = sqlite3_errmsg(db);
+		std::string errLog = std::string("open db error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		sqlite3_close(db);
+		return;
+	}
+
+	rc = sqlite3_prepare_v2(db, sql.c_str(), sql.length() + 1, &pstmt, nullptr);
+	if (rc != SQLITE_OK) {
+		zErrMsg = sqlite3_errmsg(db);
+		std::string errLog = std::string("prepare updateCharacterBrief error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		sqlite3_close(db);
+		return;
+	}
+	std::string name = brief.getName();
+	std::string imgPath = brief.getImgPath();
+	int dmgType = static_cast<int>(brief.getDmgType());
+	int charId = brief.getId();
+	sqlite3_bind_text(pstmt, 1, name.c_str(), name.length()+1, nullptr);
+	sqlite3_bind_text(pstmt, 2, imgPath.c_str(), imgPath.length() + 1, nullptr);
+	sqlite3_bind_int(pstmt, 3, dmgType);
+	sqlite3_bind_int(pstmt, 4, charId);
+	rc = sqlite3_step(pstmt);
+	if (SQLITE_DONE != rc)
+	{
+		zErrMsg = sqlite3_errmsg(db);
+		std::string errLog = std::string("update tb_char_brief error: ") + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+	}
+	sqlite3_reset(pstmt);
+	sqlite3_finalize(pstmt);
+	sqlite3_close(db);
+}
+
 void DBHelper::insertLvProps(int charId, const std::set<CharacterLvProp>& lvProps)
 {
 	sqlite3* db = nullptr;
@@ -134,7 +228,7 @@ void DBHelper::insertLvProps(int charId, const std::set<CharacterLvProp>& lvProp
 	rc = sqlite3_prepare_v2(db, sqlLv.c_str(), sqlLv.length() + 1, &pstmt, nullptr);
 	if (rc != SQLITE_OK) {
 		zErrMsg = sqlite3_errmsg(db);
-		std::string errLog = std::string("prepare tb_char_brief error: ") + sqlite3_errmsg(db);
+		std::string errLog = std::string("prepare sqlLv error: ") + sqlite3_errmsg(db);
 		LOG_ERROR("DBHelper", errLog.c_str());
 		sqlite3_close(db);
 		return;

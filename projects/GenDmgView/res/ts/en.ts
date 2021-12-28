@@ -1,10 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="en">
+<context>
+    <name>CharacterBriefModel</name>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="103"/>
+        <source>Fire</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="106"/>
+        <source>Water</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="109"/>
+        <source>Wood</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="112"/>
+        <source>Thunder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="115"/>
+        <source>Wind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="118"/>
+        <source>Ice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="121"/>
+        <source>Stone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="127"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="156"/>
+        <source>id</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="162"/>
+        <source>name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="159"/>
+        <source>DmgType</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="165"/>
+        <source>ImgPath</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context>
     <name>CharacterFrame</name>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="73"/>
+        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="80"/>
         <source>input character name here</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12,32 +75,32 @@
 <context>
     <name>CharacterLvPropModel</name>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="205"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="239"/>
         <source>level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="209"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="243"/>
         <source>max hp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="213"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="247"/>
         <source>max atk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="217"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="251"/>
         <source>max def</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="230"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="264"/>
         <source>bef break</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="227"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="261"/>
         <source>aft break</source>
         <translation type="unfinished"></translation>
     </message>

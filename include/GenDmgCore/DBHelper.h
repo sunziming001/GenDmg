@@ -18,6 +18,8 @@ public:
 
 	void insertCharacterBrief(CharacterBrief& bref);
 	std::vector<CharacterBrief> selectAllCharacterBrief();
+	CharacterBrief selectCharacterBrief(int charId, bool& isOk);
+	void updateCharacterBrief(const CharacterBrief& brief);
 
 	void insertLvProps(int charId, const std::set<CharacterLvProp>& lvProps);
 	std::set<CharacterLvProp> selectLvProps(int charId);

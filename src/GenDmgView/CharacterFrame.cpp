@@ -7,6 +7,8 @@
 #include <QTableView>
 #include <QHeaderView>
 #include "CharacterLvPropDelegate.h"
+#include "CharacterBriefModel.h"
+#include "CharacterBriefDelegate.h"
 
 CharacterFrame::CharacterFrame(QWidget* parent)
 	:QFrame(parent)
@@ -17,7 +19,7 @@ CharacterFrame::CharacterFrame(QWidget* parent)
 	mainLayout_->setContentsMargins(2, 4, 2, 0);
 	this->setLayout(mainLayout_);
 
-	tvBreif_ = createBriefTable();
+	tvBrief_ = createBriefTable();
 	tvLvProps_ = createLvPropTable();
 	
 	configView_ = createConfigView();
@@ -25,7 +27,7 @@ CharacterFrame::CharacterFrame(QWidget* parent)
 
 
 	mainLayout_->addWidget(configView_);
-	mainLayout_->addWidget(tvBreif_);
+	mainLayout_->addWidget(tvBrief_);
 	mainLayout_->addWidget(tvLvProps_);
 	mainLayout_->addStretch(1);
 
@@ -71,11 +73,12 @@ QFrame* CharacterFrame::createConfigView()
 QComboBox* CharacterFrame::createCharacterSearcher()
 {
 	cbCharacterSeacher_ = new QComboBox(this);
+	cbCharacterListModel_ = new CharacterListModel(cbCharacterSeacher_);
 
 	cbCharacterSeacher_->setObjectName("CharacterSearcherComboBox");
 	cbCharacterSeacher_->setEditable(true);
 	cbCharacterSeacher_->lineEdit()->setPlaceholderText(tr("input character name here"));
-	cbCharacterSeacher_->setModel(new CharacterListModel(this));
+	cbCharacterSeacher_->setModel(cbCharacterListModel_);
 	
 	connect(cbCharacterSeacher_, &QComboBox::currentIndexChanged, this, &CharacterFrame::onCharacterSearcherIndexChaged);
 	cbCharacterSeacher_->setCurrentIndex(cbCharacterSeacher_->count());
@@ -111,28 +114,61 @@ QTableView* CharacterFrame::createLvPropTable()
 
 QTableView* CharacterFrame::createBriefTable()
 {
-	tvBreif_ = new QTableView(this);
-	tvBreif_->setObjectName("CharacterBriefTableView");
+	tvBrief_ = new QTableView(this);
+	tvBriefModel_ = new CharacterBriefModel(-1,tvBrief_);
 
-	tvBreif_->horizontalHeader()->setVisible(false);
-	tvBreif_->verticalHeader()->setVisible(false);
-	tvBreif_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-	tvBreif_->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+	tvBrief_->setObjectName("CharacterBriefTableView");
+	tvBrief_->setModel(tvBriefModel_);
+	tvBrief_->setItemDelegate(new CharacterBriefDelegate(tvBrief_));
 
-	tvBreif_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	tvBreif_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	tvBrief_->setWordWrap(false);
+	tvBrief_->horizontalHeader()->setVisible(false);
+	tvBrief_->verticalHeader()->setVisible(false);
+	tvBrief_->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+	tvBrief_->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+	tvBrief_->horizontalHeader()->setStretchLastSection(true);
+	tvBrief_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	tvBrief_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-	return tvBreif_;
+	connect(tvBriefModel_, &CharacterBriefModel::dataChanged,
+		this, [this]() {
+		if (cbCharacterListModel_)
+		{
+			cbCharacterListModel_->refresh();
+			refreshCharacterImage();
+		}
+	});
+
+	return tvBrief_;
 }
 
 void CharacterFrame::onCharacterSearcherIndexChaged(int indx)
 {
+	int charId = cbCharacterSeacher_->itemData(indx, static_cast<int>(CharacterBriefModelRole::CharacterId)).toInt();
+	
+	refreshCharacterImage();
+
+	if (tvLvPropsModel_)
+	{
+		tvLvPropsModel_->resetCharacterId(charId);
+	}
+
+	if (tvBriefModel_)
+	{
+		tvBriefModel_->resetCharacterId(charId);
+	}
+	
+}
+
+void CharacterFrame::refreshCharacterImage()
+{
+	int indx = cbCharacterSeacher_->currentIndex();
 	AwesomeFontManager* afm = AwesomeFontManager::getInstance();
 	QtAwesome* qa = afm->getQtAwesome();
 
-	QString path =cbCharacterSeacher_->itemData(indx, static_cast<int>(CharacterBriefModelRole::ImageUrl)).toString();
-	int charId = cbCharacterSeacher_->itemData(indx, static_cast<int>(CharacterBriefModelRole::CharacterId)).toInt();
+	QString path = cbCharacterSeacher_->itemData(indx, static_cast<int>(CharacterBriefModelRole::ImageUrl)).toString();
 	
+
 	QPixmap img(path);
 	if (img.isNull())
 	{
@@ -143,10 +179,4 @@ void CharacterFrame::onCharacterSearcherIndexChaged(int indx)
 		img = img.scaled(lbCharacterImg_->size());
 		lbCharacterImg_->setPixmap(img);
 	}
-
-	if (tvLvPropsModel_)
-	{
-		tvLvPropsModel_->resetCharacterId(charId);
-	}
-	
 }

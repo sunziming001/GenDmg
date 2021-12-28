@@ -52,6 +52,16 @@ bool GenDmgCore::updateCharacterLvProps(int charId, std::vector<CharacterLvProp>
 	return DBHelper::getInstance()->updateLvProps(charId, propSet);
 }
 
+CharacterBrief GenDmgCore::selectCharacterBrief(int charId, bool& isOk)
+{
+	return DBHelper::getInstance()->selectCharacterBrief(charId, isOk);
+}
+
+void GenDmgCore::updateCharacterBreif(const CharacterBrief& brief)
+{
+	DBHelper::getInstance()->updateCharacterBrief(brief);
+}
+
 GenDmgCore::~GenDmgCore()
 {
 

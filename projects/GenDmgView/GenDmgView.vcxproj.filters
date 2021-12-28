@@ -70,6 +70,12 @@
     <ClCompile Include="..\..\src\GenDmgView\CharacterLvPropDelegate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgView\CharacterBriefModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgView\CharacterBriefDelegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgView\ViewLogger.h">
@@ -122,6 +128,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="..\..\include\GenDmgView\CharacterLvPropDelegate.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\include\GenDmgView\CharacterBriefModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\include\GenDmgView\CharacterBriefDelegate.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

@@ -11,6 +11,8 @@
 #include <QTableView>
 
 class CharacterLvPropModel;
+class CharacterBriefModel;
+class CharacterListModel;
 
 class CharacterFrame:public QFrame
 {
@@ -24,6 +26,7 @@ private:
 	QTableView* createLvPropTable();
 	QTableView* createBriefTable();
 	void onCharacterSearcherIndexChaged(int indx);
+	void refreshCharacterImage();
 private:
 	QVBoxLayout* mainLayout_ =nullptr;
 
@@ -33,9 +36,13 @@ private:
 	QLabel* lbCharacterImg_ = nullptr;
 
 	QComboBox* cbCharacterSeacher_ = nullptr;
+	CharacterListModel* cbCharacterListModel_ = nullptr;
+
 	QVBoxLayout* configSearchLayout_ = nullptr;
 
-	QTableView* tvBreif_ = nullptr;
+	QTableView* tvBrief_ = nullptr;
+	CharacterBriefModel* tvBriefModel_ = nullptr;
+
 	QTableView* tvLvProps_ = nullptr;
 	CharacterLvPropModel* tvLvPropsModel_ = nullptr;
 

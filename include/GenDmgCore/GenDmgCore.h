@@ -14,6 +14,10 @@ public:
 	DLL_EXPORT std::vector<CharacterBrief> getAllCharacterBrief();
 	DLL_EXPORT std::vector<CharacterLvProp> getCharacterLvProps(int charId);
 	DLL_EXPORT bool updateCharacterLvProps(int charId, std::vector<CharacterLvProp> props);
+
+	DLL_EXPORT CharacterBrief selectCharacterBrief(int charId,bool& isOk);
+	DLL_EXPORT void updateCharacterBreif(const CharacterBrief& brief);
+
 	~GenDmgCore();
 private:
 	GenDmgCore();
