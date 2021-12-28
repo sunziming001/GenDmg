@@ -69,14 +69,30 @@ void MainFrame::paintEvent(QPaintEvent* e)
 
 void MainFrame::mousePressEvent(QMouseEvent* e)
 {
-	mouseDragPos_ = e->globalPos();
+	QPoint pos = e->globalPos();
+	QPoint posToTitle = titlePanel_->mapFromGlobal(pos);
+	if (titlePanel_->rect().contains(posToTitle))
+	{
+		mouseDragPos_ = e->globalPos();
+		isWindowDragging_ = true;
+	}
+	
 }
 
 void MainFrame::mouseMoveEvent(QMouseEvent* e)
 {
-	const QPoint delta = e->globalPos() - mouseDragPos_;
-	move(x() + delta.x(), y() + delta.y());
-	mouseDragPos_ = e->globalPos();
+	if (isWindowDragging_)
+	{
+		const QPoint delta = e->globalPos() - mouseDragPos_;
+		move(x() + delta.x(), y() + delta.y());
+		mouseDragPos_ = e->globalPos();
+	}
+
+}
+
+void MainFrame::mouseReleaseEvent(QMouseEvent* e)
+{
+	isWindowDragging_ = false;
 }
 
 bool MainFrame::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)

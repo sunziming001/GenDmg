@@ -20,6 +20,7 @@ protected:
 	virtual void paintEvent(QPaintEvent* e);
 	virtual void mousePressEvent(QMouseEvent* event);
 	virtual void mouseMoveEvent(QMouseEvent* e);
+	virtual void mouseReleaseEvent(QMouseEvent* e);
 	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) Q_DECL_OVERRIDE;
 
 private:
@@ -27,6 +28,7 @@ private:
 	QWidget* createContainer(QWidget* widget);
 	void onPageChanged(PageType type);
 private:
+	bool isWindowDragging_ = false;
 	QPoint mouseDragPos_;
 	QVBoxLayout* mainLayout_;
 	QHBoxLayout* bodyLayout_;
