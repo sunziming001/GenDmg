@@ -7,9 +7,10 @@
 #include <QButtonGroup>
 
 
-enum class PageType{
+enum class PageType {
 	Home,
 	Character,
+	GrowRate,
 };
 
 class MainPanel:public QFrame
@@ -23,10 +24,11 @@ private:
 	QPushButton* createPanelButton(int awsomeIcon);
 	void onButtonToggled(QAbstractButton* btn, bool toggled);
 private:
-	QVBoxLayout *mainLayout_;
-	QButtonGroup* btnGroup_;
-	QPushButton* btnHome_;
-	QPushButton* btnCharacter_;
+	QVBoxLayout *mainLayout_ = nullptr;
+	QButtonGroup* btnGroup_ = nullptr;
+	QPushButton* btnHome_ = nullptr;
+	QPushButton* btnCharacter_ = nullptr;
+	QPushButton* btnGrowRate_ = nullptr;
 };
 
 #endif

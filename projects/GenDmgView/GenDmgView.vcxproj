@@ -27,6 +27,8 @@
     <ClCompile Include="..\..\src\GenDmgView\CharacterLvPropDelegate.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\CharacterLvPropModel.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\GenDmgApp.cpp" />
+    <ClCompile Include="..\..\src\GenDmgView\GrowRateFrame.cpp" />
+    <ClCompile Include="..\..\src\GenDmgView\GrowRateModel.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\main.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\MainFrame.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\MainPanel.cpp" />
@@ -34,13 +36,17 @@
     <ClCompile Include="..\..\src\GenDmgView\QtAwesomeAnim.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\TitlePanel.cpp" />
     <ClCompile Include="..\..\src\GenDmgView\ViewI18n.cpp" />
+    <ClCompile Include="..\..\src\GenDmgView\WidgetUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgView\AwesomeFontManager.h" />
+    <QtMoc Include="..\..\include\GenDmgView\GrowRateModel.h" />
+    <ClInclude Include="..\..\include\GenDmgView\WidgetUtil.h" />
     <QtMoc Include="..\..\include\GenDmgView\CharacterLvPropModel.h" />
     <QtMoc Include="..\..\include\GenDmgView\CharacterLvPropDelegate.h" />
     <QtMoc Include="..\..\include\GenDmgView\CharacterBriefModel.h" />
     <QtMoc Include="..\..\include\GenDmgView\CharacterBriefDelegate.h" />
+    <QtMoc Include="..\..\include\GenDmgView\GrowRateFrame.h" />
     <ClInclude Include="..\..\include\GenDmgView\ViewI18n.h" />
     <QtMoc Include="..\..\include\GenDmgView\CharacterListModel.h" />
     <QtMoc Include="..\..\include\GenDmgView\CharacterFrame.h" />

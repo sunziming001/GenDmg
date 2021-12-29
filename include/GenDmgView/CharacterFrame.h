@@ -30,9 +30,7 @@ private:
 	void refreshCharacterImage();
 
 	
-	QPushButton* createOperBtn(QWidget* parent);
-	QPushButton* createSaveBtn(QWidget* parent);
-	QPushButton* createRevertBtn(QWidget* parent);
+
 
 private:
 	QVBoxLayout* mainLayout_ =nullptr;

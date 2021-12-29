@@ -9,6 +9,7 @@
 #include "TitlePanel.h"
 #include "CharacterFrame.h"
 #include <QScrollArea>
+#include "GrowRateFrame.h"
 
 
 MainFrame::MainFrame(QWidget* parent)
@@ -33,18 +34,20 @@ MainFrame::MainFrame(QWidget* parent)
 	titlePanel_ = new TitlePanel(this);
 	mainPanel_ = new MainPanel(this);
 	characterFrame_ = new CharacterFrame(this);
+	growRateFrame_ = new GrowRateFrame(this);
 
-	stackedLayout_ = new QStackedLayout(this);
-	stackedLayout_->setStackingMode(QStackedLayout::StackOne);
+	stackLayout_ = new QStackedLayout(this);
+	stackLayout_->setStackingMode(QStackedLayout::StackOne);
 	
-	homeFrameIndex_ = stackedLayout_->addWidget(createContainer(new QFrame(this)));
-	characterFrameIndex_ = stackedLayout_->addWidget(createContainer(characterFrame_));
+	homeFrameIndex_ = stackLayout_->addWidget(createContainer(new QFrame(this)));
+	characterFrameIndex_ = stackLayout_->addWidget(createContainer(characterFrame_));
+	growFrameIndex_ = stackLayout_->addWidget(createContainer(growRateFrame_));
 
 	mainLayout_->addWidget(titlePanel_);
 	mainLayout_->addLayout(bodyLayout_, 1);
 
 	bodyLayout_->addWidget(mainPanel_);
-	bodyLayout_->addLayout(stackedLayout_, 1);
+	bodyLayout_->addLayout(stackLayout_, 1);
 
 
 	connect(mainPanel_, &MainPanel::sigPageChanged, this, &MainFrame::onPageChanged);
@@ -234,10 +237,13 @@ void MainFrame::onPageChanged(PageType type)
 	switch (type)
 	{
 	case PageType::Home:
-		stackedLayout_->setCurrentIndex(homeFrameIndex_);
+		stackLayout_->setCurrentIndex(homeFrameIndex_);
 		break;
 	case PageType::Character:
-		stackedLayout_->setCurrentIndex(characterFrameIndex_);
+		stackLayout_->setCurrentIndex(characterFrameIndex_);
+		break;
+	case PageType::GrowRate:
+		stackLayout_->setCurrentIndex(growFrameIndex_);
 		break;
 	default:
 		break;

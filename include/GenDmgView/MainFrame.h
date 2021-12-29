@@ -9,6 +9,8 @@
 class MainPanel;
 class TitlePanel;
 class CharacterFrame;
+class GrowRateFrame;
+
 enum class PageType;
 
 class MainFrame :public QFrame
@@ -34,11 +36,13 @@ private:
 	QHBoxLayout* bodyLayout_;
 	MainPanel* mainPanel_;
 	TitlePanel* titlePanel_;
-	QStackedLayout* stackedLayout_ = nullptr;
+	QStackedLayout* stackLayout_ = nullptr;
 	CharacterFrame* characterFrame_ = nullptr;
+	GrowRateFrame* growRateFrame_ = nullptr;
 
 	int characterFrameIndex_ = 0;
 	int homeFrameIndex_ = 0;
+	int growFrameIndex_ = 0;
 };
 
 #endif

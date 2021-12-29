@@ -115,6 +115,14 @@ QTableView#CharacterBriefTableView{
 	min-height:50px;
 }
 
+QTableView#GrowRateTableView
+{
+	border-top: 1px solid #000000;
+	border-left: 1px solid #000000;
+	padding:0px;
+	min-width:450px;
+}
+
 QPushButton#CharacterOperButton{
 	background-color: transparent;
 	min-width:26px;

@@ -9,6 +9,7 @@
 #include "CharacterLvPropDelegate.h"
 #include "CharacterBriefModel.h"
 #include "CharacterBriefDelegate.h"
+#include "WidgetUtil.h"
 
 CharacterFrame::CharacterFrame(QWidget* parent)
 	:QFrame(parent)
@@ -98,8 +99,8 @@ QFrame* CharacterFrame::createLvPropTable()
 	QHBoxLayout* btnLayout = new QHBoxLayout;
 	btnLayout->setContentsMargins(0, 0, 0, 0);
 
-	QPushButton* btnSave = createSaveBtn(frame);
-	QPushButton* btnRevert = createRevertBtn(frame);
+	QPushButton* btnSave = WidgetUtil::createSaveBtn(frame);
+	QPushButton* btnRevert = WidgetUtil::createRevertBtn(frame);
 
 	tvLvProps_->setObjectName("LvPropsTableView");
 
@@ -153,8 +154,8 @@ QFrame* CharacterFrame::createBriefTable()
 	QHBoxLayout* btnLayout = new QHBoxLayout;
 	btnLayout->setContentsMargins(0, 0, 0, 0);
 
-	QPushButton* btnSave = createSaveBtn(frame);
-	QPushButton* btnRevert = createRevertBtn(frame);
+	QPushButton* btnSave = WidgetUtil::createSaveBtn(frame);
+	QPushButton* btnRevert = WidgetUtil::createRevertBtn(frame);
 
 	tvBrief_ = new QTableView(frame);
 
@@ -238,32 +239,4 @@ void CharacterFrame::refreshCharacterImage()
 		img = img.scaled(lbCharacterImg_->size());
 		lbCharacterImg_->setPixmap(img);
 	}
-}
-
-QPushButton* CharacterFrame::createOperBtn(QWidget* parent)
-{
-	QPushButton* btn = new QPushButton(parent);
-	btn->setObjectName("CharacterOperButton");
-	btn->setIconSize(QSize(23, 23));
-	return btn;
-}
-
-QPushButton* CharacterFrame::createSaveBtn(QWidget* parent)
-{
-	AwesomeFontManager* afm = AwesomeFontManager::getInstance();
-	QtAwesome* qa = afm->getQtAwesome();
-	QPushButton* btn = createOperBtn(parent);
-	btn->setIcon(qa->icon(fa::save));
-
-	return btn;
-}
-
-QPushButton* CharacterFrame::createRevertBtn(QWidget* parent)
-{
-	AwesomeFontManager* afm = AwesomeFontManager::getInstance();
-	QtAwesome* qa = afm->getQtAwesome();
-	QPushButton* btn = createOperBtn(parent);
-	btn->setIcon(qa->icon(fa::reply));
-
-	return btn;
 }

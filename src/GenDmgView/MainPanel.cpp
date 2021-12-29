@@ -4,9 +4,6 @@
 #include <QString>
 MainPanel::MainPanel(QWidget* parent /*=nullptr*/)
 	:QFrame(parent)
-	, mainLayout_(nullptr)
-	, btnCharacter_(nullptr)
-	, btnGroup_(nullptr)
 {
 	setObjectName("MainPanel");
 
@@ -20,9 +17,12 @@ MainPanel::MainPanel(QWidget* parent /*=nullptr*/)
 
 	btnHome_ = createPanelButton(fa::home);
 	btnCharacter_ = createPanelButton(fa::child);
+	btnGrowRate_ = createPanelButton(fa::table);
 
 	mainLayout_->addWidget(btnHome_);
 	mainLayout_->addWidget(btnCharacter_);
+	mainLayout_->addWidget(btnGrowRate_);
+
 	mainLayout_->addStretch(1);
 
 	connect(btnGroup_, &QButtonGroup::buttonToggled, this, &MainPanel::onButtonToggled);
@@ -54,6 +54,10 @@ void MainPanel::onButtonToggled(QAbstractButton* btn, bool toggled)
 			emit sigPageChanged(PageType::Home);
 		}else if(btn==btnCharacter_){
 			emit sigPageChanged(PageType::Character);
+		}
+		else if (btn == btnGrowRate_)
+		{
+			emit sigPageChanged(PageType::GrowRate);
 		}
 	}
 }
