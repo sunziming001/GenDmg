@@ -8,62 +8,62 @@
         <translation type="obsolete">莫娜</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="103"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="102"/>
         <source>Fire</source>
         <translation>火</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="106"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="105"/>
         <source>Water</source>
         <translation>水</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="109"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="108"/>
         <source>Wood</source>
         <translation>草</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="112"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="111"/>
         <source>Thunder</source>
         <translation>雷</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="115"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="114"/>
         <source>Wind</source>
         <translation>风</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="118"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="117"/>
         <source>Ice</source>
         <translation>冰</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="121"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="120"/>
         <source>Stone</source>
         <translation>岩</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="127"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="126"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="156"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="165"/>
         <source>id</source>
         <translation>id</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="162"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="171"/>
         <source>name</source>
         <translation>名字</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="159"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="168"/>
         <source>DmgType</source>
         <translation>属性</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="165"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="174"/>
         <source>ImgPath</source>
         <translation>图片路径</translation>
     </message>
@@ -71,7 +71,7 @@
 <context>
     <name>CharacterFrame</name>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="80"/>
+        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="81"/>
         <source>input character name here</source>
         <translation>在此输入角色名</translation>
     </message>
@@ -79,32 +79,32 @@
 <context>
     <name>CharacterLvPropModel</name>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="239"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="249"/>
         <source>level</source>
         <translation>等级</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="243"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="253"/>
         <source>max hp</source>
         <translation>生命上限</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="247"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="257"/>
         <source>max atk</source>
         <translation>攻击力</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="251"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="261"/>
         <source>max def</source>
         <translation>防御力</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="264"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="274"/>
         <source>bef break</source>
         <translation>突破前</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="261"/>
+        <location filename="../../../../src/GenDmgView/CharacterLvPropModel.cpp" line="271"/>
         <source>aft break</source>
         <translation>突破后</translation>
     </message>

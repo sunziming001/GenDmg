@@ -3,6 +3,7 @@
 #include "ICharacter.h"
 #include "DamageStream.h"
 #include "DBHelper.h"
+#include "string_codec.h"
 
 GenDmgCore* GenDmgCore::getInstance()
 {
@@ -22,7 +23,15 @@ void GenDmgCore::init()
 	for (auto b : briefs)
 	{
 		std::set<CharacterLvProp> props = DBHelper::getInstance()->selectLvProps(b.getId());
+	}
+	CharacterGrowRate rate;
+	rate.setName(base::AnsiToUtf8("123"));
+	for (int i = 1; i <= 13; i++)
+	{
+		rate.setLvRate(i, i);
 	}*/
+	//DBHelper::getInstance()->insertCharacterGrowRate(rate);
+	//auto set = DBHelper::getInstance()->selectAllCharacterGrowRate();
 	
 }
 

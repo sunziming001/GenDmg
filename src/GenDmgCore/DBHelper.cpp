@@ -54,8 +54,8 @@ void DBHelper::insertCharacterBrief(CharacterBrief& bref)
 	std::string name = bref.getName();
 	std::string imgPath = bref.getImgPath();
 	int dmgType = static_cast<int>(bref.getDmgType());
-	sqlite3_bind_text(pstmt, 1, name.c_str(), name.length()+1, nullptr);
-	sqlite3_bind_text(pstmt, 2, imgPath.c_str(), imgPath.length() + 1, nullptr);
+	sqlite3_bind_string(pstmt, 1, name);
+	sqlite3_bind_string(pstmt, 2, imgPath);
 	sqlite3_bind_int(pstmt, 3, dmgType);
 	rc = sqlite3_step(pstmt);
 	if (SQLITE_DONE != rc)
@@ -198,8 +198,8 @@ void DBHelper::updateCharacterBrief(const CharacterBrief& brief)
 	std::string imgPath = brief.getImgPath();
 	int dmgType = static_cast<int>(brief.getDmgType());
 	int charId = brief.getId();
-	sqlite3_bind_text(pstmt, 1, name.c_str(), name.length()+1, nullptr);
-	sqlite3_bind_text(pstmt, 2, imgPath.c_str(), imgPath.length() + 1, nullptr);
+	sqlite3_bind_string(pstmt, 1, name);
+	sqlite3_bind_string(pstmt, 2, imgPath);
 	sqlite3_bind_int(pstmt, 3, dmgType);
 	sqlite3_bind_int(pstmt, 4, charId);
 	rc = sqlite3_step(pstmt);
@@ -375,6 +375,81 @@ bool DBHelper::updateLvProps(int charId, const std::set<CharacterLvProp>& lvProp
 	return ret;
 }
 
+void DBHelper::insertCharacterGrowRate(CharacterGrowRate& rate)
+{
+	sqlite3* db = nullptr;
+	bool ret = false;
+	ret = openDB(&db);
+	std::string sql = "insert into tb_char_grow_rate(name";
+	for (int i = 1; i <= DBHelper::SkillLvCnt; i++)
+	{
+		sql += ",lv_" + std::to_string(i);
+	}
+	sql += ")values(?";
+	for (int i = 1; i <= DBHelper::SkillLvCnt; i++)
+	{
+		sql += ",?";
+	}
+	sql += ");";
+
+	SqlPrepareCallback prepareCb = [&](sqlite3_stmt* pstmt) {
+		sqlite3_bind_string(pstmt, 1, rate.getName());
+		for (int i = 1; i <= DBHelper::SkillLvCnt; i++)
+		{
+			sqlite3_bind_double(pstmt, i + 1, rate.getLvRate(i));
+		}
+	};
+
+	if (ret)
+	{
+		execSql(db, sql, prepareCb);
+	}
+
+	closeDB(db);
+}
+
+CharacterGrowRate DBHelper::selectCharacterGrowRate(int id)
+{
+	CharacterGrowRate ret;
+	return ret;
+}
+
+bool DBHelper::updateCharacterGrowRate(CharacterGrowRate& rate)
+{
+	bool ret = false;
+
+	return ret;
+}
+
+std::set<CharacterGrowRate> DBHelper::selectAllCharacterGrowRate()
+{
+	sqlite3* db = nullptr;
+	bool ret = false;
+	ret = openDB(&db);
+	std::set<CharacterGrowRate> growRateSet;
+	std::string sql = "select id,name";
+	for (int i = 1; i <= DBHelper::SkillLvCnt; i++)
+	{
+		sql += ",lv_" + std::to_string(i);
+	}
+	sql += " from tb_char_grow_rate";
+	SqlStepCallback stepCb = [&](sqlite3_stmt* pstmt) {
+		CharacterGrowRate rate;
+		rate.setId(sqlite3_column_int(pstmt, 0));
+		rate.setName((const char*)sqlite3_column_text(pstmt, 1));
+		for (int i = 1; i <= DBHelper::SkillLvCnt; i++)
+		{
+			int colIndx = i+1;
+			rate.setLvRate(i, sqlite3_column_int(pstmt, colIndx));
+		}
+		growRateSet.insert(rate);
+	};
+
+	execSql(db, sql,nullptr, stepCb);
+
+	return growRateSet;
+}
+
 DBHelper::DBHelper()
 {
 
@@ -412,6 +487,25 @@ void DBHelper::initCharacterTable()
 		" PRIMARY KEY (char_id, is_break, lv)"
 		");";
 
+	std::string sql_char_grow_rate = "create table IF NOT EXISTS "
+		"tb_char_grow_rate("
+		"id integer primary key autoincrement,"
+		"name text not null,"
+		"lv_1 real not null,"
+		"lv_2 real not null,"
+		"lv_3 real not null,"
+		"lv_4 real not null,"
+		"lv_5 real not null,"
+		"lv_6 real not null,"
+		"lv_7 real not null,"
+		"lv_8 real not null,"
+		"lv_9 real not null,"
+		"lv_10 real not null,"
+		"lv_11 real not null,"
+		"lv_12 real not null,"
+		"lv_13 real not null"
+		");";
+
 
 	rc = sqlite3_exec(db, sql_char_brief.c_str(), 0, 0, &zErrMsg);
 	if (rc != SQLITE_OK)
@@ -427,7 +521,98 @@ void DBHelper::initCharacterTable()
 		LOG_ERROR("DBHelper", errLog.c_str());
 	}
 
+	rc = sqlite3_exec(db, sql_char_grow_rate.c_str(), 0, 0, &zErrMsg);
+	if (rc != SQLITE_OK)
+	{
+		std::string errLog = std::string("create tb_char_grow_rate failed: ") + zErrMsg;
+		LOG_ERROR("DBHelper", errLog.c_str());
+	}
+
 	sqlite3_close(db);
+}
+
+bool DBHelper::openDB(sqlite3** dbPtr)
+{
+	char* zErrMsg = nullptr;
+	int rc = 0;
+	bool ret = false;
+	rc = sqlite3_open(DB_FILE_PATH, dbPtr);
+	if (rc) {
+		std::string errLog = std::string("open error: ") + sqlite3_errmsg(*dbPtr);
+		LOG_ERROR("DBHelper", errLog.c_str());
+		ret= false;
+	}
+	else {
+		ret= true;
+	}
+	return ret;
+}
+
+bool DBHelper::closeDB(sqlite3* db)
+{
+	sqlite3_close(db);
+	return true;
+}
+
+bool DBHelper::execSql(sqlite3* db, const std::string& sql, SqlPrepareCallback prepCb /*=nullptr*/, SqlStepCallback stepCb/*=nullptr*/)
+{
+	bool ret = false;
+	sqlite3_stmt* pstmt = nullptr;
+	const char* zErrMsg = nullptr;
+	const char* pTail = nullptr;
+	int rc = 0;
+
+	rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &pstmt, NULL);
+	if (rc != SQLITE_OK)
+	{
+		std::string errLog = sql+" error: " + sqlite3_errmsg(db);
+		LOG_ERROR("DBHelper", errLog.c_str());
+	}
+	else 
+	{
+		if (prepCb)
+		{
+			prepCb(pstmt);
+		}
+		rc = sqlite3_step(pstmt);
+		while (rc == SQLITE_DONE || rc == SQLITE_ROW)
+		{
+			if (stepCb)
+			{
+				stepCb(pstmt);
+			}
+			if (rc == SQLITE_DONE)
+			{
+				ret = true;
+				break;
+			}
+			else {
+				rc = sqlite3_step(pstmt);
+			}
+
+			if (rc == SQLITE_DONE)
+			{
+				ret = true;
+				break;
+			}
+		}
+		sqlite3_reset(pstmt);
+		sqlite3_finalize(pstmt);
+		pstmt = nullptr;
+	}
+
+
+	return ret;
+}
+
+void DBHelper::sqlite3_bind_string(sqlite3_stmt* pstmt, int indx, const std::string& text)
+{
+	size_t buffSize = text.length() + 1;
+	char* buff = (char*)calloc(1, buffSize);
+	strncpy_s(buff, buffSize, text.c_str(), text.length());
+	sqlite3_bind_text(pstmt, indx, buff, -1,[](void* ptr) {
+		free(ptr);
+	});
 }
 
 DBHelper* DBHelper::instance;
