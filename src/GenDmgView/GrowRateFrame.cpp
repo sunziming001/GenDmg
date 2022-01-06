@@ -29,6 +29,8 @@ QFrame* GrowRateFrame::createGrowRateFrame()
 	QHBoxLayout* btnLayout = new QHBoxLayout;
 	
 	btnAddGrowRate_ = WidgetUtil::createAddBtn(this);
+	btnSaveAll_ = WidgetUtil::createSaveBtn(this);
+	btnRevert_ = WidgetUtil::createRevertBtn(this);
 
 	tvGrowRate_ = new QTableView(frame);
 	growRateModel_ = new GrowRateModel(tvGrowRate_);
@@ -47,11 +49,27 @@ QFrame* GrowRateFrame::createGrowRateFrame()
 	tvGrowRate_->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
 
 	btnLayout->addWidget(btnAddGrowRate_);
+	btnLayout->addWidget(btnSaveAll_);
+	btnLayout->addWidget(btnRevert_);
 	btnLayout->addStretch(1);
 
 	frameLayout->addLayout(btnLayout);
 	frameLayout->addWidget(tvGrowRate_);
 
 	frame->setLayout(frameLayout);
+
+
+	connect(btnAddGrowRate_, &QPushButton::clicked, this, [this]() {
+		growRateModel_->addEmptyGrowRate();
+	});
+
+	connect(btnSaveAll_, &QPushButton::clicked, this, [this]() {
+		growRateModel_->saveToDB();
+	});
+
+	connect(btnRevert_, &QPushButton::clicked, this, [this]() {
+		growRateModel_->resetFromDB();
+	});
+
 	return frame;
 }

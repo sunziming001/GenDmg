@@ -5,6 +5,8 @@
 #include <vector>
 #include "CharacterBrief.h"
 #include "CharacterLvProp.h"
+#include "CharacterGrowRate.h"
+
 class GenDmgCore
 {
 public:
@@ -18,6 +20,9 @@ public:
 	DLL_EXPORT CharacterBrief selectCharacterBrief(int charId,bool& isOk);
 	DLL_EXPORT void updateCharacterBreif(const CharacterBrief& brief);
 
+	DLL_EXPORT std::vector<CharacterGrowRate> selectAllGrowRate();
+	DLL_EXPORT void insertGrowRate(CharacterGrowRate& rate);
+	DLL_EXPORT void updateGrowRate(CharacterGrowRate& rate);
 	~GenDmgCore();
 private:
 	GenDmgCore();

@@ -18,7 +18,7 @@ struct sqlite3_stmt;
 struct sqlite3;
 
 typedef std::function<void(sqlite3_stmt* pstmt)> SqlPrepareCallback;
-typedef std::function<void(sqlite3_stmt* pstmt)> SqlStepCallback;
+typedef std::function<void(int rc, sqlite3_stmt* pstmt)> SqlStepCallback;
 
 class DBHelper
 {
@@ -39,7 +39,7 @@ public:
 
 	void insertCharacterGrowRate(CharacterGrowRate& rate);
 	CharacterGrowRate selectCharacterGrowRate(int id);
-	bool updateCharacterGrowRate(CharacterGrowRate& rate);
+	void updateCharacterGrowRate(CharacterGrowRate& rate);
 	std::set<CharacterGrowRate> selectAllCharacterGrowRate();
 private:
 	DBHelper();

@@ -71,6 +71,22 @@ void GenDmgCore::updateCharacterBreif(const CharacterBrief& brief)
 	DBHelper::getInstance()->updateCharacterBrief(brief);
 }
 
+std::vector<CharacterGrowRate> GenDmgCore::selectAllGrowRate()
+{
+	auto rateSet = DBHelper::getInstance()->selectAllCharacterGrowRate();
+	return std::vector<CharacterGrowRate>(rateSet.begin(), rateSet.end());
+}
+
+void GenDmgCore::insertGrowRate(CharacterGrowRate& rate)
+{
+	DBHelper::getInstance()->insertCharacterGrowRate(rate);
+}
+
+void GenDmgCore::updateGrowRate(CharacterGrowRate& rate)
+{
+	DBHelper::getInstance()->updateCharacterGrowRate(rate);
+}
+
 GenDmgCore::~GenDmgCore()
 {
 

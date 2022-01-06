@@ -405,6 +405,9 @@ void DBHelper::insertCharacterGrowRate(CharacterGrowRate& rate)
 		execSql(db, sql, prepareCb);
 	}
 
+	int id = static_cast<int>(sqlite3_last_insert_rowid(db));
+	rate.setId(id);
+
 	closeDB(db);
 }
 
@@ -414,11 +417,33 @@ CharacterGrowRate DBHelper::selectCharacterGrowRate(int id)
 	return ret;
 }
 
-bool DBHelper::updateCharacterGrowRate(CharacterGrowRate& rate)
+void DBHelper::updateCharacterGrowRate(CharacterGrowRate& rate)
 {
+	sqlite3* db = nullptr;
 	bool ret = false;
+	ret = openDB(&db);
+	std::string sql = "update tb_char_grow_rate set name=?";
+	for (int i = 1; i <= DBHelper::SkillLvCnt; i++)
+	{
+		sql += ",lv_" + std::to_string(i) +"=?";
+	}
+	sql += " where id=?;";
 
-	return ret;
+	SqlPrepareCallback prepareCb = [&](sqlite3_stmt* pstmt) {
+		sqlite3_bind_string(pstmt, 1, rate.getName());
+		for (int i = 1; i <= DBHelper::SkillLvCnt; i++)
+		{
+			sqlite3_bind_double(pstmt, i + 1, rate.getLvRate(i));
+		}
+		sqlite3_bind_int(pstmt, DBHelper::SkillLvCnt + 2, rate.getId());
+	};
+
+	if (ret)
+	{
+		ret = execSql(db, sql, prepareCb);
+	}
+
+	closeDB(db);
 }
 
 std::set<CharacterGrowRate> DBHelper::selectAllCharacterGrowRate()
@@ -433,16 +458,20 @@ std::set<CharacterGrowRate> DBHelper::selectAllCharacterGrowRate()
 		sql += ",lv_" + std::to_string(i);
 	}
 	sql += " from tb_char_grow_rate";
-	SqlStepCallback stepCb = [&](sqlite3_stmt* pstmt) {
-		CharacterGrowRate rate;
-		rate.setId(sqlite3_column_int(pstmt, 0));
-		rate.setName((const char*)sqlite3_column_text(pstmt, 1));
-		for (int i = 1; i <= DBHelper::SkillLvCnt; i++)
+	SqlStepCallback stepCb = [&](int rc, sqlite3_stmt* pstmt) {
+		if (rc == SQLITE_ROW)
 		{
-			int colIndx = i+1;
-			rate.setLvRate(i, sqlite3_column_int(pstmt, colIndx));
+			CharacterGrowRate rate;
+			const char* str = (const char*)sqlite3_column_text(pstmt, 1);
+			rate.setId(sqlite3_column_int(pstmt, 0));
+			rate.setName(str);
+			for (int i = 1; i <= DBHelper::SkillLvCnt; i++)
+			{
+				int colIndx = i + 1;
+				rate.setLvRate(i, sqlite3_column_double(pstmt, colIndx));
+			}
+			growRateSet.insert(rate);
 		}
-		growRateSet.insert(rate);
 	};
 
 	execSql(db, sql,nullptr, stepCb);
@@ -579,7 +608,7 @@ bool DBHelper::execSql(sqlite3* db, const std::string& sql, SqlPrepareCallback p
 		{
 			if (stepCb)
 			{
-				stepCb(pstmt);
+				stepCb(rc,pstmt);
 			}
 			if (rc == SQLITE_DONE)
 			{
@@ -588,12 +617,6 @@ bool DBHelper::execSql(sqlite3* db, const std::string& sql, SqlPrepareCallback p
 			}
 			else {
 				rc = sqlite3_step(pstmt);
-			}
-
-			if (rc == SQLITE_DONE)
-			{
-				ret = true;
-				break;
 			}
 		}
 		sqlite3_reset(pstmt);

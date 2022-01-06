@@ -19,6 +19,8 @@ private:
 private:
 	QVBoxLayout* mainLayout_ = nullptr;
 	QPushButton* btnAddGrowRate_ = nullptr;
+	QPushButton* btnSaveAll_ = nullptr;
+	QPushButton* btnRevert_ = nullptr;
 
 	QTableView* tvGrowRate_ = nullptr;
 	GrowRateModel* growRateModel_ = nullptr;
