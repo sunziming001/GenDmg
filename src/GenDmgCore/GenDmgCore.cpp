@@ -43,6 +43,11 @@ void GenDmgCore::uninit()
 }
 	
 
+void GenDmgCore::insertEmptyCharacter(const std::string& name)
+{
+	DBHelper::getInstance()->insertEmptyCharacter(name);
+}
+
 std::vector<CharacterBrief> GenDmgCore::getAllCharacterBrief()
 {
 	return DBHelper::getInstance()->selectAllCharacterBrief();

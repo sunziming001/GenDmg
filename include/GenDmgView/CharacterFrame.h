@@ -29,21 +29,16 @@ private:
 	void onCharacterSearcherIndexChaged(int indx);
 	void refreshCharacterImage();
 
-	
-
-
+	void addEmptyCharacter();
 private:
 	QVBoxLayout* mainLayout_ =nullptr;
 
 
 	QWidget* configView_ = nullptr;
-	QHBoxLayout *configLayout_ = nullptr;
 	QLabel* lbCharacterImg_ = nullptr;
 
 	QComboBox* cbCharacterSeacher_ = nullptr;
 	CharacterListModel* cbCharacterListModel_ = nullptr;
-
-	QVBoxLayout* configSearchLayout_ = nullptr;
 
 	QTableView* tvBrief_ = nullptr;
 	CharacterBriefModel* tvBriefModel_ = nullptr;

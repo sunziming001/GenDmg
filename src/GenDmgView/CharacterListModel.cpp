@@ -53,3 +53,14 @@ void CharacterListModel::refresh()
 	dataChanged(topLeft, bottomRight);
 }
 
+std::set<std::string> CharacterListModel::getAllCharacterName() const
+{
+	std::set<std::string> ret;
+	for (auto& brief : briefs_)
+	{
+		ret.insert(brief.getName());
+	}
+
+	return ret;
+}
+

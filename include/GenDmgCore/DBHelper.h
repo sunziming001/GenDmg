@@ -28,7 +28,10 @@ public:
 	void uninit();
 	~DBHelper();
 
+	void insertEmptyCharacter(const std::string& name);
+
 	void insertCharacterBrief(CharacterBrief& bref);
+
 	std::vector<CharacterBrief> selectAllCharacterBrief();
 	CharacterBrief selectCharacterBrief(int charId, bool& isOk);
 	void updateCharacterBrief(const CharacterBrief& brief);

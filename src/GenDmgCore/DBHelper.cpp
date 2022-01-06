@@ -29,6 +29,40 @@ DBHelper::~DBHelper()
 
 }
 
+void DBHelper::insertEmptyCharacter(const std::string& name)
+{
+	CharacterBrief brief;
+	std::set<int> hasBreakLv = { 20,40,50,60,70,80 };
+	std::set<CharacterLvProp> lvProps;
+	brief.setName(name);
+
+	insertCharacterBrief(brief);
+	for (auto v : hasBreakLv)
+	{
+		CharacterLvProp lvProp;
+		lvProp.setIsBreak(true);
+		lvProp.setLv(v);
+
+		lvProps.insert(lvProp);
+
+		lvProp.setIsBreak(false);
+		lvProps.insert(lvProp);
+	}
+	CharacterLvProp lv1;
+	CharacterLvProp lv90;
+
+	lv1.setLv(1);
+	lv1.setIsBreak(true);
+
+	lv90.setLv(90);
+	lv90.setIsBreak(false);
+
+	lvProps.insert(lv1);
+	lvProps.insert(lv90);
+
+	insertLvProps(brief.getId(), lvProps);
+}
+
 void DBHelper::insertCharacterBrief(CharacterBrief& bref)
 {
 	sqlite3* db = nullptr;

@@ -45,30 +45,40 @@ QFrame* CharacterFrame::createConfigView()
 {
 	AwesomeFontManager* afm = AwesomeFontManager::getInstance();
 	QtAwesome* qa = afm->getQtAwesome();
-
 	QFrame* frame = new QFrame(this);
+	QPushButton* btnAddCharacter = WidgetUtil::createAddBtn(frame);
+	QPushButton* btnDelCharacter = WidgetUtil::createDelBtn(frame);
+	
 
-	configLayout_ = new QHBoxLayout;
-	configLayout_->setContentsMargins(0, 0, 0, 0);
+	QHBoxLayout *mainLayout = new QHBoxLayout;
+	mainLayout->setContentsMargins(0, 0, 0, 0);
 	
 	lbCharacterImg_ = new QLabel(frame);
 	lbCharacterImg_->setObjectName("CharacterImgLabel");
 	QIcon icon = qa->icon(fa::question);
 	lbCharacterImg_->setPixmap(icon.pixmap(208, 248));
 
-	configSearchLayout_ = new QVBoxLayout;
-	configSearchLayout_->setContentsMargins(0, 0, 0, 0);
+	QVBoxLayout* configLayout = new QVBoxLayout;
+	configLayout->setContentsMargins(0, 0, 0, 0);
+	QHBoxLayout *ctrlLayout = new QHBoxLayout;
+
 	cbCharacterSeacher_ = createCharacterSearcher();
+	ctrlLayout->addWidget(cbCharacterSeacher_);
+	ctrlLayout->addWidget(btnAddCharacter);
+	ctrlLayout->addWidget(btnDelCharacter);
+	ctrlLayout->addStretch(1);
 
-	configSearchLayout_->addWidget(cbCharacterSeacher_);
-	configSearchLayout_->addStretch(1);
+	configLayout->addLayout(ctrlLayout);
+	configLayout->addStretch(1);
 
-	configLayout_->addWidget(lbCharacterImg_);
-	configLayout_->addLayout(configSearchLayout_);
-	configLayout_->addStretch(1);
+	mainLayout->addWidget(lbCharacterImg_);
+	mainLayout->addLayout(configLayout);
+	mainLayout->addStretch(1);
 
+	frame->setLayout(mainLayout);
 
-	frame->setLayout(configLayout_);
+	connect(btnAddCharacter, &QPushButton::clicked,
+		this,&CharacterFrame::addEmptyCharacter);
 	return frame;
 }
 
@@ -238,5 +248,31 @@ void CharacterFrame::refreshCharacterImage()
 	else {
 		img = img.scaled(lbCharacterImg_->size());
 		lbCharacterImg_->setPixmap(img);
+	}
+}
+
+void CharacterFrame::addEmptyCharacter()
+{
+	std::string name = cbCharacterSeacher_->currentText().toUtf8().data();
+	std::set<std::string> existNames;
+	if (name.empty())
+	{
+		return;
+	}
+	if (cbCharacterListModel_ == nullptr)
+	{
+		return;
+	}
+	existNames = cbCharacterListModel_->getAllCharacterName();
+	if (existNames.find(name) != existNames.end())
+	{
+		return;
+	}
+
+	GenDmgCore::getInstance()->insertEmptyCharacter(name);
+	if (cbCharacterListModel_)
+	{
+		cbCharacterListModel_->refresh();
+		refreshCharacterImage();
 	}
 }

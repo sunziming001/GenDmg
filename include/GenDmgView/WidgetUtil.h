@@ -9,6 +9,7 @@ namespace WidgetUtil
 	QPushButton* createSaveBtn(QWidget* parent);
 	QPushButton* createRevertBtn(QWidget* parent);
 	QPushButton* createAddBtn(QWidget* parent);
+	QPushButton* createDelBtn(QWidget* parent);
 }
 
 

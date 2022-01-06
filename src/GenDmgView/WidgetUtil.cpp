@@ -39,3 +39,13 @@ QPushButton* WidgetUtil::createAddBtn(QWidget* parent)
 
 	return btn;
 }
+
+QPushButton* WidgetUtil::createDelBtn(QWidget* parent)
+{
+	AwesomeFontManager* afm = AwesomeFontManager::getInstance();
+	QtAwesome* qa = afm->getQtAwesome();
+	QPushButton* btn = createOperBtn(parent);
+	btn->setIcon(qa->icon(fa::minus));
+
+	return btn;
+}

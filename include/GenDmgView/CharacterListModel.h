@@ -20,6 +20,7 @@ public:
 	int rowCount(const QModelIndex&) const override;
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 	void refresh();
+	std::set<std::string> getAllCharacterName()const;
 private:
 	std::vector<CharacterBrief> briefs_;
 

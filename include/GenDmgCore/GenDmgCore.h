@@ -13,6 +13,7 @@ public:
 	DLL_EXPORT static GenDmgCore* getInstance();
 	DLL_EXPORT void init();
 	DLL_EXPORT void uninit();
+	DLL_EXPORT void insertEmptyCharacter(const std::string& name);
 	DLL_EXPORT std::vector<CharacterBrief> getAllCharacterBrief();
 	DLL_EXPORT std::vector<CharacterLvProp> getCharacterLvProps(int charId);
 	DLL_EXPORT bool updateCharacterLvProps(int charId, std::vector<CharacterLvProp> props);
