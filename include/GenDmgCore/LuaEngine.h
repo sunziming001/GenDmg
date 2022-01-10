@@ -20,9 +20,12 @@ public:
 	void uninit();
 
 	void loadScript(const std::string& fileName, const std::string& tag="");
+	std::string loadResource(const std::string& fileName, const std::string& tag="");
 private:
 	LuaEngine();
-	std::string loadResource(const std::string& fileName, const std::string& tag);
+	
+	std::string loadResourceWithouSearch(const std::string& fileName, const std::string& tag);
+	void initResourceLoader();
 private:
 	static LuaEngine* instance;
 	lua_State* luaState_;

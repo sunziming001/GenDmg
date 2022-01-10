@@ -5,6 +5,29 @@
 
 LuaEngine* LuaEngine::instance=nullptr;
 
+
+
+int LuaResourceLoader(lua_State* L)
+{
+	const char* name = luaL_checkstring(L, 1);  // Module name
+	std::string luaFile = std::string(name) + ".lua";
+
+	BOOL loadSuccess = FALSE;
+	BOOL luaSuccess = FALSE;
+
+	std::string text = LuaEngine::getInstance()->loadResource(luaFile);
+	
+	if (luaL_loadbufferx(L, (const char*)text.c_str(), text.length(), name, nullptr) != LUA_OK)
+	{
+		luaSuccess = FALSE;
+	}
+	else {
+		luaSuccess = TRUE;
+	}
+	return 1;
+}
+
+
 LuaEngine* LuaEngine::getInstance()
 {
 	if (nullptr == instance)
@@ -20,6 +43,26 @@ LuaEngine::LuaEngine()
 
 
 std::string LuaEngine::loadResource(const std::string& fileName, const std::string& tag)
+{
+	std::string text;
+	if (!tag.empty())
+	{
+		text = loadResourceWithouSearch(fileName, tag);
+	}
+	else {
+		for (std::string resTag : luaResTag_)
+		{
+			text = loadResourceWithouSearch(fileName, resTag);
+			if (!text.empty())
+			{
+				break;
+			}
+		}
+	}
+	return text;
+}
+
+std::string LuaEngine::loadResourceWithouSearch(const std::string& fileName, const std::string& tag)
 {
 	std::string ret;
 
@@ -57,6 +100,19 @@ std::string LuaEngine::loadResource(const std::string& fileName, const std::stri
 	return ret;
 }
 
+void LuaEngine::initResourceLoader()
+{
+	lua_register(luaState_, "resource_loader", LuaResourceLoader);
+
+	std::string     str;
+
+	//  str += "table.insert(package.loaders,   2, my_loader) \n";   // Older than lua v5.2
+	str += "table.insert(package.searchers, 2, resource_loader) \n";
+
+	luaL_dostring(luaState_, str.c_str());
+}
+
+
 LuaEngine::~LuaEngine()
 {
 
@@ -71,6 +127,7 @@ void LuaEngine::init()
 	{
 		luaState_ = luaL_newstate();
 		luaL_openlibs(luaState_);
+		initResourceLoader();
 	}
 
 #ifdef _DEBUG
@@ -80,7 +137,7 @@ void LuaEngine::init()
 	freopen_s(&fDummy, "CONOUT$", "w", stderr);
 	freopen_s(&fDummy, "CONOUT$", "w", stdout);
 #endif
-	loadScript("test.lua", "LUACORE");
+	loadScript("main.lua");
 }
 
 void LuaEngine::uninit()
@@ -99,20 +156,7 @@ void LuaEngine::uninit()
 void LuaEngine::loadScript(const std::string& fileName, const std::string& tag)
 {
 	std::string text;
-	if (!tag.empty())
-	{
-		text = loadResource(fileName, tag);
-	}
-	else {
-		for (std::string resTag : luaResTag_)
-		{
-			text = loadResource(fileName, tag);
-			if(!text.empty())
-			{ 
-				break;
-			}
-		}
-	}
+	text = loadResource(fileName, tag);
 	
 
 	if (luaL_dostring(luaState_, text.c_str()) != LUA_OK)
