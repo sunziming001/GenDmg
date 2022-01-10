@@ -351,3 +351,4 @@ MigrationBackup/
 
 out/
 *.qm
+projects/GenDmgCore/Resource.rc

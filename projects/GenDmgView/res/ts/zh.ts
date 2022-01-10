@@ -71,7 +71,7 @@
 <context>
     <name>CharacterFrame</name>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="82"/>
+        <location filename="../../../../src/GenDmgView/CharacterFrame.cpp" line="92"/>
         <source>input character name here</source>
         <translation>在此输入角色名</translation>
     </message>
@@ -187,17 +187,17 @@
 <context>
     <name>GrowRateModel</name>
     <message>
-        <location filename="../../../../src/GenDmgView/GrowRateModel.cpp" line="53"/>
+        <location filename="../../../../src/GenDmgView/GrowRateModel.cpp" line="141"/>
         <source>id</source>
         <translation type="unfinished">id</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/GrowRateModel.cpp" line="57"/>
+        <location filename="../../../../src/GenDmgView/GrowRateModel.cpp" line="145"/>
         <source>name</source>
         <translation type="unfinished">名字</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/GrowRateModel.cpp" line="60"/>
+        <location filename="../../../../src/GenDmgView/GrowRateModel.cpp" line="148"/>
         <source>lv%1</source>
         <translation type="unfinished"></translation>
     </message>

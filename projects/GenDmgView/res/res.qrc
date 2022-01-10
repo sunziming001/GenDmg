@@ -5,5 +5,6 @@
         <file>font/fontawesome-4.7.0.ttf</file>
         <file>ts/en.qm</file>
         <file>ts/zh.qm</file>
+        <file>img/char/qiqi/Qiqi.png</file>
     </qresource>
 </RCC>

@@ -99,7 +99,7 @@ GenDmgCore::~GenDmgCore()
 
 GenDmgCore::GenDmgCore()
 {
-
+	testCalc();
 }
 
 void GenDmgCore::testInsert()
@@ -144,25 +144,25 @@ void GenDmgCore::testCalc()
 	CharacterPtr pTarget = std::make_shared<ICharacter>();
 	DamageStream ds(pPlayer, pTarget);
 
-	pPlayer->setAtk(1285);
-	pPlayer->setLv(89);
+	pPlayer->setAtk(1919);
+	pPlayer->setLv(80);
 	pPlayer->setElementMystery(361);
 	pPlayer->setCirtDmgRate(0.92);
-	pPlayer->setDamageAddtion(DamageType::Fire, 0.616);
+	pPlayer->setDamageAddtion(DamageType::Physic, 0.583);
 
 	pTarget->setLv(92);
-	pTarget->setDamageResist(DamageType::Fire, 0.1);
+	pTarget->setDamageResist(DamageType::Physic, 0.1);
 
 
-	skill.skillRate = 1.89;
+	skill.skillRate = 0.5;
 
-	weapon.mapDmgType2Cell[DamageType::Fire].additon = 0.28;
+	weapon.mapDmgType2Cell[DamageType::Physic].additon = 0.413;
 
-	reduceResist.mapDmgType2Cell[DamageType::Fire].resist = -0.15;
+	reduceResist.mapDmgType2Cell[DamageType::Physic].resist = -0.40;
 
 	ds << skill << weapon << reduceResist;
 
-	DamageResultSet set = ds.getDamage(DamageType::Fire);
+	DamageResultSet set = ds.getDamage(DamageType::Physic);
 
 }
 

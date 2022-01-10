@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\lua">
+      <UniqueIdentifier>{254e5d53-5e6c-42af-8f20-de67ebb8c959}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\lua">
+      <UniqueIdentifier>{bea00cad-bf74-4a18-a29a-96156d485bed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgCore\GenDmgCore.h">
@@ -51,6 +57,87 @@
     <ClInclude Include="..\..\include\GenDmgCore\sqlite3.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lapi.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lauxlib.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lcode.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lctype.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\ldebug.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\ldo.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lfunc.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lgc.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\llex.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\llimits.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lmem.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lobject.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lopcodes.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lparser.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lprefix.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lstate.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lstring.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\ltable.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\ltests.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\ltm.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lua.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\luaconf.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lualib.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lundump.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lvm.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lzio.h">
+      <Filter>头文件\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp">
@@ -74,5 +161,115 @@
     <ClCompile Include="..\..\src\GenDmgCore\sqlite3.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lapi.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lauxlib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lbaselib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lbitlib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lcode.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lcorolib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lctype.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ldblib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ldebug.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ldo.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ldump.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lfunc.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lgc.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\linit.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\liolib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\llex.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lmathlib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lmem.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\loadlib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lobject.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lopcodes.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\loslib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lparser.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lstate.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lstring.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lstrlib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ltable.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ltablib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ltests.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ltm.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lua.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lundump.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lutf8lib.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lvm.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lzio.c">
+      <Filter>源文件\lua</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

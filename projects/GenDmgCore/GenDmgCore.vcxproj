@@ -92,7 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>MAKE_AS_DLL;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(IncludeDir)lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,6 +103,9 @@
     <PostBuildEvent>
       <Command>XCOPY $(BinDir)* $(DeployDir) /s /d /y</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)ScanRes.py -d .</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -113,7 +116,7 @@
       <PreprocessorDefinitions>MAKE_AS_DLL;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(IncludeDir)lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,6 +129,9 @@
     <PostBuildEvent>
       <Command>XCOPY $(BinDir)* $(DeployDir) /s /d /y</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)ScanRes.py -d .</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -133,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>MAKE_AS_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(IncludeDir)lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,6 +150,9 @@
     <PostBuildEvent>
       <Command>XCOPY $(BinDir)* $(DeployDir) /s /d /y</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)ScanRes.py -d .</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -154,7 +163,7 @@
       <PreprocessorDefinitions>MAKE_AS_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(IncludeDir)lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -167,6 +176,9 @@
     <PostBuildEvent>
       <Command>XCOPY $(BinDir)* $(DeployDir) /s /d /y</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)ScanRes.py -d .</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgCore\CharacterBrief.h" />
@@ -179,8 +191,35 @@
     <ClInclude Include="..\..\include\GenDmgCore\DBHelper.h" />
     <ClInclude Include="..\..\include\GenDmgCore\GenDmgCore.h" />
     <ClInclude Include="..\..\include\GenDmgCore\ICharacter.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lapi.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lauxlib.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lcode.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lctype.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\ldebug.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\ldo.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lfunc.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lgc.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\llex.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\llimits.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lmem.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lobject.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lopcodes.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lparser.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lprefix.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lstate.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lstring.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\ltable.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\ltests.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\ltm.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lua.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\luaconf.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lualib.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lundump.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lvm.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\lua\lzio.h" />
     <ClInclude Include="..\..\include\GenDmgCore\sqlite3.h" />
     <ClInclude Include="..\..\include\GenDmgCore\string_codec.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GenDmgCore\CharacterBrief.cpp" />
@@ -189,7 +228,45 @@
     <ClCompile Include="..\..\src\GenDmgCore\DamageStream.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\DBHelper.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lapi.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lauxlib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lbaselib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lbitlib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lcode.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lcorolib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lctype.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ldblib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ldebug.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ldo.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ldump.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lfunc.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lgc.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\linit.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\liolib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\llex.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lmathlib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lmem.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\loadlib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lobject.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lopcodes.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\loslib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lparser.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lstate.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lstring.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lstrlib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ltable.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ltablib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ltests.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\ltm.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lua.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lundump.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lutf8lib.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lvm.c" />
+    <ClCompile Include="..\..\src\GenDmgCore\lua\lzio.c" />
     <ClCompile Include="..\..\src\GenDmgCore\sqlite3.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
