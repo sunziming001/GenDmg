@@ -191,6 +191,7 @@
     <ClInclude Include="..\..\include\GenDmgCore\DBHelper.h" />
     <ClInclude Include="..\..\include\GenDmgCore\GenDmgCore.h" />
     <ClInclude Include="..\..\include\GenDmgCore\ICharacter.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\LuaEngine.h" />
     <ClInclude Include="..\..\include\GenDmgCore\lua\lapi.h" />
     <ClInclude Include="..\..\include\GenDmgCore\lua\lauxlib.h" />
     <ClInclude Include="..\..\include\GenDmgCore\lua\lcode.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="..\..\src\GenDmgCore\DamageStream.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\DBHelper.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp" />
+    <ClCompile Include="..\..\src\GenDmgCore\LuaEngine.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\lua\lapi.c" />
     <ClCompile Include="..\..\src\GenDmgCore\lua\lauxlib.c" />
     <ClCompile Include="..\..\src\GenDmgCore\lua\lbaselib.c" />

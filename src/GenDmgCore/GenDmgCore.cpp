@@ -4,6 +4,7 @@
 #include "DamageStream.h"
 #include "DBHelper.h"
 #include "string_codec.h"
+#include "LuaEngine.h"
 
 GenDmgCore* GenDmgCore::getInstance()
 {
@@ -17,6 +18,7 @@ void GenDmgCore::init()
 {
 	LOG_INIT(0);
 	LOG_INFO("GenDmgCore", "init.");
+	LuaEngine::getInstance()->init();
 	DBHelper::getInstance()->init();
 	/*testInsert();
 	std::vector<CharacterBrief> briefs = getAllCharacterBrief();
@@ -39,6 +41,7 @@ void GenDmgCore::uninit()
 {
 	LOG_INFO("GenDmgCore", "uninit.");
 	DBHelper::getInstance()->uninit();
+	LuaEngine::getInstance()->uninit();
 
 }
 	

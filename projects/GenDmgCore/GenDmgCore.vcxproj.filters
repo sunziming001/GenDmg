@@ -138,6 +138,9 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\GenDmgCore\LuaEngine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GenDmgCore\GenDmgCore.cpp">
@@ -265,6 +268,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\GenDmgCore\lua\lzio.c">
       <Filter>源文件\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GenDmgCore\LuaEngine.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

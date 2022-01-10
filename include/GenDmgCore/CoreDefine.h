@@ -8,5 +8,6 @@
 #  define DLL_EXPORT __declspec(dllimport)
 #endif
 
+#define MODULE_NAME "GenDmgCore.dll"
 
 #endif;
