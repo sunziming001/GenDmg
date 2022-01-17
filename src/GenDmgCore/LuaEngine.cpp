@@ -125,7 +125,6 @@ void LuaEngine::init()
 	freopen_s(&fDummy, "CONOUT$", "w", stderr);
 	freopen_s(&fDummy, "CONOUT$", "w", stdout);
 #endif
-	doScript("main.lua");
 }
 
 void LuaEngine::uninit()
@@ -159,21 +158,33 @@ void LuaEngine::loadLuaModule(const std::string& moduleName)
 	BOOL luaSuccess = FALSE;
 	std::string luaFile = moduleName + ".lua";
 	std::string text = LuaEngine::getInstance()->loadResource(luaFile);
+	int errcode = luaL_loadbufferx(luaState_, (const char*)text.c_str(), text.length(), moduleName.c_str(), nullptr);
 
-	if (luaL_loadbufferx(luaState_, (const char*)text.c_str(), text.length(), moduleName.c_str(), nullptr) != LUA_OK)
+	if (errcode != LUA_OK)
 	{
-		luaSuccess = FALSE;
-	}
-	else {
-		luaSuccess = TRUE;
-	}
+		char const* msg = lua_tostring(luaState_, -1);
+		std::string message = msg ? msg : "null string";
 
-	if (!luaSuccess)
-	{
+		std::string context = "When parsing a string to lua, ";
+
+		if (errcode == LUA_ERRSYNTAX) {
+			context += " a syntax error";
+		}
+		else if (errcode == LUA_ERRMEM) {
+			context += " a memory error";
+		}
+		else if (errcode == LUA_ERRGCMM) {
+			context += " an error in garbage collection metamethod";
+		}
+		else {
+			context += " an unknown error";
+		}
+
 		lua_pop(luaState_, 1);
 
 		lua_pushfstring(luaState_, "can't load module '%s'", moduleName);
-		lua_error(luaState_);
+
+		printf(context.c_str());
 	}
 }
 

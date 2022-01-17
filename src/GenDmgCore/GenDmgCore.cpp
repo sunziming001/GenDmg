@@ -20,6 +20,8 @@ void GenDmgCore::init()
 	LOG_INFO("GenDmgCore", "init.");
 	LuaEngine::getInstance()->init();
 	DBHelper::getInstance()->init();
+	LuaEngine::getInstance()->doScript("main.lua");
+
 	/*testInsert();
 	std::vector<CharacterBrief> briefs = getAllCharacterBrief();
 	for (auto b : briefs)
@@ -42,7 +44,6 @@ void GenDmgCore::uninit()
 	LOG_INFO("GenDmgCore", "uninit.");
 	DBHelper::getInstance()->uninit();
 	LuaEngine::getInstance()->uninit();
-
 }
 	
 
