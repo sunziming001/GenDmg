@@ -95,6 +95,11 @@ void GenDmgCore::updateGrowRate(CharacterGrowRate& rate)
 	DBHelper::getInstance()->updateCharacterGrowRate(rate);
 }
 
+std::string GenDmgCore::loadImageResource(const std::string& res)
+{
+	return LuaEngine::getInstance()->loadResourceWithouSearch(res, "IMAGES");
+}
+
 GenDmgCore::~GenDmgCore()
 {
 

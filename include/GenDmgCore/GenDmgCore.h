@@ -24,6 +24,8 @@ public:
 	DLL_EXPORT std::vector<CharacterGrowRate> selectAllGrowRate();
 	DLL_EXPORT void insertGrowRate(CharacterGrowRate& rate);
 	DLL_EXPORT void updateGrowRate(CharacterGrowRate& rate);
+
+	DLL_EXPORT std::string loadImageResource(const std::string& res);
 	~GenDmgCore();
 private:
 	GenDmgCore();

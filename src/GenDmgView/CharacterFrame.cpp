@@ -238,8 +238,9 @@ void CharacterFrame::refreshCharacterImage()
 
 	QString path = cbCharacterSeacher_->itemData(indx, static_cast<int>(CharacterBriefModelRole::ImageUrl)).toString();
 	
-
-	QPixmap img(path);
+	std::string imgData = GenDmgCore::getInstance()->loadImageResource(path.toStdString());
+	QPixmap img;
+	img.loadFromData((unsigned char*)imgData.data(), imgData.size());
 	if (img.isNull())
 	{
 		QIcon icon = qa->icon(fa::question);

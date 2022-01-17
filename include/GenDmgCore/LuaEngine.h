@@ -22,10 +22,11 @@ public:
 	void doScript(const std::string& fileName, const std::string& tag="");
 	void loadLuaModule(const std::string& moduleName);
 	std::string loadResource(const std::string& fileName, const std::string& tag="");
+	std::string loadResourceWithouSearch(const std::string& fileName, const std::string& tag);
 private:
 	LuaEngine();
 	
-	std::string loadResourceWithouSearch(const std::string& fileName, const std::string& tag);
+	
 	void initResourceLoader();
 private:
 	static LuaEngine* instance;
