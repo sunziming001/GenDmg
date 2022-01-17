@@ -19,7 +19,8 @@ public:
 	void init();
 	void uninit();
 
-	void loadScript(const std::string& fileName, const std::string& tag="");
+	void doScript(const std::string& fileName, const std::string& tag="");
+	void loadLuaModule(const std::string& moduleName);
 	std::string loadResource(const std::string& fileName, const std::string& tag="");
 private:
 	LuaEngine();

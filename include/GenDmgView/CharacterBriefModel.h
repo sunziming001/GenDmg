@@ -9,7 +9,7 @@ class CharacterBriefModel :public QAbstractTableModel
 	Q_OBJECT
 public:
 	static const int RowCnt = 2;
-	static const int ColCnt = 4;
+	static const int ColCnt = 5;
 	CharacterBriefModel(int charId, QObject* parent = nullptr);
 	~CharacterBriefModel();
 
@@ -25,6 +25,7 @@ public:
 	static bool isNameIndex(const QModelIndex& index);
 	static bool isDamageTypeIndex(const QModelIndex& index);
 	static bool isImgPathIndex(const QModelIndex& index);
+	static bool isLuaPathIndex(const QModelIndex& index);
 
 	void saveToDB();
 	void resetFromDB();

@@ -10,20 +10,8 @@ LuaEngine* LuaEngine::instance=nullptr;
 int LuaResourceLoader(lua_State* L)
 {
 	const char* name = luaL_checkstring(L, 1);  // Module name
-	std::string luaFile = std::string(name) + ".lua";
 
-	BOOL loadSuccess = FALSE;
-	BOOL luaSuccess = FALSE;
-
-	std::string text = LuaEngine::getInstance()->loadResource(luaFile);
-	
-	if (luaL_loadbufferx(L, (const char*)text.c_str(), text.length(), name, nullptr) != LUA_OK)
-	{
-		luaSuccess = FALSE;
-	}
-	else {
-		luaSuccess = TRUE;
-	}
+	LuaEngine::getInstance()->loadLuaModule(name);
 	return 1;
 }
 
@@ -137,7 +125,7 @@ void LuaEngine::init()
 	freopen_s(&fDummy, "CONOUT$", "w", stderr);
 	freopen_s(&fDummy, "CONOUT$", "w", stdout);
 #endif
-	loadScript("main.lua");
+	doScript("main.lua");
 }
 
 void LuaEngine::uninit()
@@ -153,7 +141,7 @@ void LuaEngine::uninit()
 #endif
 }
 
-void LuaEngine::loadScript(const std::string& fileName, const std::string& tag)
+void LuaEngine::doScript(const std::string& fileName, const std::string& tag)
 {
 	std::string text;
 	text = loadResource(fileName, tag);
@@ -163,6 +151,29 @@ void LuaEngine::loadScript(const std::string& fileName, const std::string& tag)
 	{
 		printf("Error: %s\n", lua_tostring(luaState_, -1));
 		lua_pop(luaState_, 1); // pop error message
+	}
+}
+
+void LuaEngine::loadLuaModule(const std::string& moduleName)
+{
+	BOOL luaSuccess = FALSE;
+	std::string luaFile = moduleName + ".lua";
+	std::string text = LuaEngine::getInstance()->loadResource(luaFile);
+
+	if (luaL_loadbufferx(luaState_, (const char*)text.c_str(), text.length(), moduleName.c_str(), nullptr) != LUA_OK)
+	{
+		luaSuccess = FALSE;
+	}
+	else {
+		luaSuccess = TRUE;
+	}
+
+	if (!luaSuccess)
+	{
+		lua_pop(luaState_, 1);
+
+		lua_pushfstring(luaState_, "can't load module '%s'", moduleName);
+		lua_error(luaState_);
 	}
 }
 

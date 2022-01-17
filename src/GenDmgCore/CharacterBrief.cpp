@@ -52,3 +52,13 @@ void CharacterBrief::setDmgType(DamageType val)
 {
 	dmgType_ = val;
 }
+
+std::string CharacterBrief::getLuaPath() const
+{
+	return luaPath_;
+}
+
+void CharacterBrief::setLuaPath(std::string val)
+{
+	luaPath_ = val;
+}

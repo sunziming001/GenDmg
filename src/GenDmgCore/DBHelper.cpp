@@ -78,7 +78,7 @@ void DBHelper::insertCharacterBrief(CharacterBrief& bref)
 		return;
 	}
 
-	std::string sqlBrief = "insert into tb_char_brief (name, img_path, dmg_type) values (?,?,?);";
+	std::string sqlBrief = "insert into tb_char_brief (name, img_path, dmg_type, lua_path) values (?,?,?,?);";
 	rc = sqlite3_prepare_v2(db, sqlBrief.c_str(), sqlBrief.length()+1,&pstmt, nullptr);
 	if (rc != SQLITE_OK) {
 		sqlite3_close(db);
@@ -87,10 +87,12 @@ void DBHelper::insertCharacterBrief(CharacterBrief& bref)
 	}
 	std::string name = bref.getName();
 	std::string imgPath = bref.getImgPath();
+	std::string luaPath = bref.getLuaPath();
 	int dmgType = static_cast<int>(bref.getDmgType());
 	sqlite3_bind_string(pstmt, 1, name);
 	sqlite3_bind_string(pstmt, 2, imgPath);
 	sqlite3_bind_int(pstmt, 3, dmgType);
+	sqlite3_bind_string(pstmt, 4, luaPath);
 	rc = sqlite3_step(pstmt);
 	if (SQLITE_DONE != rc)
 	{
@@ -117,7 +119,7 @@ std::vector<CharacterBrief> DBHelper::selectAllCharacterBrief()
 	const char* zErrMsg = nullptr;
 	const char* pTail = nullptr;
 	int rc = 0;
-	std::string sqlSelectBrief = "select id, name, dmg_type, img_path from tb_char_brief;";
+	std::string sqlSelectBrief = "select id, name, dmg_type, img_path,lua_path from tb_char_brief;";
 
 	rc = sqlite3_open(DB_FILE_PATH, &db);
 	if (rc) {
@@ -142,6 +144,7 @@ std::vector<CharacterBrief> DBHelper::selectAllCharacterBrief()
 			brief.setName((const char*)(sqlite3_column_text(pstmt, 1)));
 			brief.setDmgType(static_cast<DamageType>(sqlite3_column_int(pstmt, 2)));
 			brief.setImgPath((const char*)(sqlite3_column_text(pstmt, 3)));
+			brief.setLuaPath((const char*)(sqlite3_column_text(pstmt, 4)));
 			ret.push_back(brief);
 		}
 	}
@@ -164,7 +167,7 @@ CharacterBrief DBHelper::selectCharacterBrief(int charId, bool& isOk)
 	const char* zErrMsg = nullptr;
 	const char* pTail = nullptr;
 	int rc = 0;
-	std::string sql = "select id, name, dmg_type, img_path from tb_char_brief where id = ?;";
+	std::string sql = "select id, name, dmg_type, img_path, lua_path from tb_char_brief where id = ?;";
 
 	rc = sqlite3_open(DB_FILE_PATH, &db);
 	if (rc) {
@@ -190,6 +193,7 @@ CharacterBrief DBHelper::selectCharacterBrief(int charId, bool& isOk)
 			ret.setName((const char*)sqlite3_column_text(pstmt, 1));
 			ret.setDmgType(static_cast<DamageType>(sqlite3_column_int(pstmt, 2)));
 			ret.setImgPath((const char*)sqlite3_column_text(pstmt, 3));
+			ret.setLuaPath((const char*)sqlite3_column_text(pstmt, 4));
 			isOk = true;
 		}
 
@@ -209,7 +213,7 @@ void DBHelper::updateCharacterBrief(const CharacterBrief& brief)
 	const char* zErrMsg = nullptr;
 	const char* pTail = nullptr;
 	int rc = 0;
-	std::string sql = "update tb_char_brief set name=?,img_path=?,dmg_type=? where id = ?;";
+	std::string sql = "update tb_char_brief set name=?,img_path=?,dmg_type=?,lua_path=? where id = ?;";
 	
 	rc = sqlite3_open(DB_FILE_PATH, &db);
 	if (rc != SQLITE_OK) {
@@ -230,12 +234,14 @@ void DBHelper::updateCharacterBrief(const CharacterBrief& brief)
 	}
 	std::string name = brief.getName();
 	std::string imgPath = brief.getImgPath();
+	std::string luaPath = brief.getLuaPath();
 	int dmgType = static_cast<int>(brief.getDmgType());
 	int charId = brief.getId();
 	sqlite3_bind_string(pstmt, 1, name);
 	sqlite3_bind_string(pstmt, 2, imgPath);
 	sqlite3_bind_int(pstmt, 3, dmgType);
-	sqlite3_bind_int(pstmt, 4, charId);
+	sqlite3_bind_string(pstmt, 4, luaPath);
+	sqlite3_bind_int(pstmt, 5, charId);
 	rc = sqlite3_step(pstmt);
 	if (SQLITE_DONE != rc)
 	{
@@ -535,7 +541,8 @@ void DBHelper::initCharacterTable()
 		"tb_char_brief(id integer primary key autoincrement, "
 		"name text not null,"
 		"dmg_type integer not null,"
-		"img_path text not null);";
+		"img_path text not null,"
+		"lua_path text not null);";
 
 	std::string sql_char_lv_detail = "create table IF NOT EXISTS "
 		"tb_char_lv_detail("

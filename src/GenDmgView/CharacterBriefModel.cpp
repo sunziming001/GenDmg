@@ -44,7 +44,8 @@ Qt::ItemFlags CharacterBriefModel::flags(const QModelIndex& index) const
 	Qt::ItemFlags ret = QAbstractTableModel::flags(index);
 	if (isNameIndex(index)
 		|| isDamageTypeIndex(index)
-		|| isImgPathIndex(index))
+		|| isImgPathIndex(index)
+		|| isLuaPathIndex(index))
 	{
 		ret |= Qt::ItemIsEditable;
 	}
@@ -68,6 +69,11 @@ bool CharacterBriefModel::setData(const QModelIndex& index, const QVariant& valu
 	else if (isImgPathIndex(index))
 	{
 		brief_.setImgPath(value.toString().toUtf8().data());
+		ret = true;
+	}
+	else if (isLuaPathIndex(index))
+	{
+		brief_.setLuaPath(value.toString().toUtf8().data());
 		ret = true;
 	}
 	else {
@@ -144,6 +150,11 @@ bool CharacterBriefModel::isImgPathIndex(const QModelIndex& index)
 	return index.row() == 1 && index.column() == 3;
 }
 
+bool CharacterBriefModel::isLuaPathIndex(const QModelIndex& index)
+{
+	return index.row() == 1 && index.column() == 4;
+}
+
 void CharacterBriefModel::saveToDB()
 {
 	GenDmgCore::getInstance()->updateCharacterBreif(brief_);
@@ -173,6 +184,9 @@ QVariant CharacterBriefModel::getDisplayRole(const QModelIndex& index)const
 		case 3:
 			ret = tr("ImgPath");
 			break;
+		case 4:
+			ret = tr("LuaPath");
+			break;
 		default:
 			break;
 		}
@@ -191,6 +205,9 @@ QVariant CharacterBriefModel::getDisplayRole(const QModelIndex& index)const
 			break;
 		case 3:
 			ret = brief_.getImgPath().c_str();
+			break;
+		case 4:
+			ret = brief_.getLuaPath().c_str();
 			break;
 		default:
 			break;
@@ -219,6 +236,9 @@ QVariant CharacterBriefModel::getEditRole(const QModelIndex& index)const
 			break;
 		case 3:
 			ret = QString::fromStdString(brief_.getImgPath());
+			break;
+		case 4:
+			ret = QString::fromStdString(brief_.getLuaPath());
 			break;
 		default:
 			break;

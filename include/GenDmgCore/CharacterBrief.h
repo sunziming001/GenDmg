@@ -21,10 +21,13 @@ public:
 	DLL_EXPORT void setImgPath(const std::string& val);
 	DLL_EXPORT DamageType getDmgType() const;
 	DLL_EXPORT void setDmgType(DamageType val);
+	DLL_EXPORT std::string getLuaPath() const; 
+	DLL_EXPORT void setLuaPath(std::string val);
 private:
 	int id_;
 	std::string name_;
 	std::string imgPath_;
+	std::string luaPath_;
 	DamageType dmgType_;
 };
 

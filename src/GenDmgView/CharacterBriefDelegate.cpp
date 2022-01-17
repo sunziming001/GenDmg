@@ -31,7 +31,8 @@ QWidget* CharacterBriefDelegate::createEditor(QWidget* parent, const QStyleOptio
 		ret = createDmgTypeCombo(parent, index);
 	}
 	else if(CharacterBriefModel::isImgPathIndex(index)
-		|| CharacterBriefModel::isNameIndex(index))
+		|| CharacterBriefModel::isNameIndex(index)
+		|| CharacterBriefModel::isLuaPathIndex(index))
 	{
 		ret = createPlainLineEdit(parent, index);
 	}
@@ -53,7 +54,8 @@ void CharacterBriefDelegate::setModelData(QWidget* editor, QAbstractItemModel* m
 		
 	}
 	else if (CharacterBriefModel::isImgPathIndex(index)
-		|| CharacterBriefModel::isNameIndex(index))
+		|| CharacterBriefModel::isNameIndex(index)
+		|| CharacterBriefModel::isLuaPathIndex(index))
 	{
 		QLineEdit *le = dynamic_cast<QLineEdit*>(editor);
 		if (le && !le->text().isEmpty())
@@ -67,6 +69,7 @@ void CharacterBriefDelegate::setEditorData(QWidget* editor, const QModelIndex& i
 {
 	if (CharacterBriefModel::isImgPathIndex(index)
 		|| CharacterBriefModel::isNameIndex(index)
+		|| CharacterBriefModel::isLuaPathIndex(index)
 		|| CharacterBriefModel::isDamageTypeIndex(index))
 	{
 
