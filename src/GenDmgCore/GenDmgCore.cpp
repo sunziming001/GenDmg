@@ -5,6 +5,7 @@
 #include "DBHelper.h"
 #include "string_codec.h"
 #include "LuaEngine.h"
+#include "CharacterConfig.h"
 
 GenDmgCore* GenDmgCore::getInstance()
 {
@@ -37,6 +38,12 @@ void GenDmgCore::init()
 	//DBHelper::getInstance()->insertCharacterGrowRate(rate);
 	//auto set = DBHelper::getInstance()->selectAllCharacterGrowRate();
 	
+	CharacterConfig config;
+	config.setId(1);
+	config.setLv(71);
+	config.setIsBreak(true);
+
+
 }
 
 void GenDmgCore::uninit()

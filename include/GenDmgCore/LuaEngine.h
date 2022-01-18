@@ -3,6 +3,8 @@
 
 #include <string>
 #include <set>
+#include "CharacterConfig.h"
+
 extern "C"
 {
 #include "lua.h"  
@@ -10,6 +12,8 @@ extern "C"
 #include "lauxlib.h" 
 
 };
+
+
 
 class LuaEngine {
 public:
@@ -23,6 +27,8 @@ public:
 	void loadLuaModule(const std::string& moduleName);
 	std::string loadResource(const std::string& fileName, const std::string& tag="");
 	std::string loadResourceWithouSearch(const std::string& fileName, const std::string& tag);
+
+	void addCharacterConfig(const CharacterConfig& config);
 private:
 	LuaEngine();
 	

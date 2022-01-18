@@ -1,7 +1,7 @@
 #include "LuaEngine.h"
 #include "CoreDefine.h"
 #include "windows.h"
-
+#include <iostream>
 
 LuaEngine* LuaEngine::instance=nullptr;
 
@@ -88,11 +88,16 @@ std::string LuaEngine::loadResourceWithouSearch(const std::string& fileName, con
 	return ret;
 }
 
+void LuaEngine::addCharacterConfig(const CharacterConfig& config)
+{
+
+}
+
 void LuaEngine::initResourceLoader()
 {
 	lua_register(luaState_, "resource_loader", LuaResourceLoader);
 
-	std::string     str;
+	std::string str;
 
 	//  str += "table.insert(package.loaders,   2, my_loader) \n";   // Older than lua v5.2
 	str += "table.insert(package.searchers, 2, resource_loader) \n";
@@ -184,7 +189,8 @@ void LuaEngine::loadLuaModule(const std::string& moduleName)
 
 		lua_pushfstring(luaState_, "can't load module '%s'", moduleName);
 
-		printf(context.c_str());
+		std::cerr << message << std::endl;
+		std::cerr << context<<std::endl;
 	}
 }
 

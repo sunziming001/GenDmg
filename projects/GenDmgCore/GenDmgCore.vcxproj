@@ -182,6 +182,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\GenDmgCore\CharacterBrief.h" />
+    <ClInclude Include="..\..\include\GenDmgCore\CharacterConfig.h" />
     <ClInclude Include="..\..\include\GenDmgCore\CharacterGrowRate.h" />
     <ClInclude Include="..\..\include\GenDmgCore\CharacterLvProp.h" />
     <ClInclude Include="..\..\include\GenDmgCore\CoreDefine.h" />
@@ -224,6 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GenDmgCore\CharacterBrief.cpp" />
+    <ClCompile Include="..\..\src\GenDmgCore\CharacterConfig.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\CharacterGrowRate.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\CharacterLvProp.cpp" />
     <ClCompile Include="..\..\src\GenDmgCore\DamageStream.cpp" />
