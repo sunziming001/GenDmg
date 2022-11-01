@@ -8,62 +8,67 @@
         <translation type="obsolete">莫娜</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="102"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="108"/>
         <source>Fire</source>
         <translation>火</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="105"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="111"/>
         <source>Water</source>
         <translation>水</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="108"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="114"/>
         <source>Wood</source>
         <translation>草</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="111"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="117"/>
         <source>Thunder</source>
         <translation>雷</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="114"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="120"/>
         <source>Wind</source>
         <translation>风</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="117"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="123"/>
         <source>Ice</source>
         <translation>冰</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="120"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="126"/>
         <source>Stone</source>
         <translation>岩</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="126"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="132"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="165"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="176"/>
         <source>id</source>
         <translation>id</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="171"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="182"/>
         <source>name</source>
         <translation>名字</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="168"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="188"/>
+        <source>LuaPath</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="179"/>
         <source>DmgType</source>
         <translation>属性</translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="174"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="185"/>
         <source>ImgPath</source>
         <translation>图片路径</translation>
     </message>

@@ -2,6 +2,7 @@
 #include "CoreDefine.h"
 #include "windows.h"
 #include <iostream>
+#include <algorithm>
 
 LuaEngine* LuaEngine::instance=nullptr;
 
@@ -88,9 +89,42 @@ std::string LuaEngine::loadResourceWithouSearch(const std::string& fileName, con
 	return ret;
 }
 
-void LuaEngine::addCharacterConfig(const CharacterConfig& config)
-{
 
+
+std::map<std::string, int> LuaEngine::genDmgList(const std::string& luaPath, const CharacterConfig* conf)
+{
+	std::map<std::string, int> ret;
+
+	lua_getglobal(luaState_, "SetCharacterConf");
+
+	lua_newtable(luaState_);
+
+	lua_pushinteger(luaState_, conf->getBaseHp());
+	lua_setfield(luaState_, -2, "baseHp");
+
+	lua_pushinteger(luaState_, conf->getBaseAtk());
+	lua_setfield(luaState_, -2, "baseAtk");
+
+	lua_pushinteger(luaState_, conf->getBaseDef());
+	lua_setfield(luaState_, -2, "baseDef");
+
+	lua_pushinteger(luaState_, (int)conf->getSpecialPropType());
+	lua_setfield(luaState_, -2, "specialPropType");
+
+	lua_pushnumber(luaState_, (int)conf->getSpecialPropVal());
+	lua_setfield(luaState_, -2, "specialPropVal");
+
+	if (lua_pcall(luaState_, 1, 0, 0) != 0)
+	{
+		std::string err = lua_tostring(luaState_, -1);
+		std::cerr << err << std::endl;
+	}
+
+	doScript(luaPath, "LUACHAR");
+	
+
+
+	return ret;
 }
 
 void LuaEngine::initResourceLoader()
@@ -130,6 +164,8 @@ void LuaEngine::init()
 	freopen_s(&fDummy, "CONOUT$", "w", stderr);
 	freopen_s(&fDummy, "CONOUT$", "w", stdout);
 #endif
+
+	doScript("character.lua", "LUACORE");
 }
 
 void LuaEngine::uninit()
@@ -158,11 +194,18 @@ void LuaEngine::doScript(const std::string& fileName, const std::string& tag)
 	}
 }
 
-void LuaEngine::loadLuaModule(const std::string& moduleName)
+void LuaEngine::loadLuaModule(const std::string& moduleName, const std::string& tag)
 {
 	BOOL luaSuccess = FALSE;
-	std::string luaFile = moduleName + ".lua";
-	std::string text = LuaEngine::getInstance()->loadResource(luaFile);
+	std::string luaFile = moduleName;
+
+	if (moduleName.find(".lua") == std::string::npos)
+	{
+		luaFile += ".lua";
+	}
+
+	std::string text = LuaEngine::getInstance()->loadResource(luaFile, tag);
+	
 	int errcode = luaL_loadbufferx(luaState_, (const char*)text.c_str(), text.length(), moduleName.c_str(), nullptr);
 
 	if (errcode != LUA_OK)

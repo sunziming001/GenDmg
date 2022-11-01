@@ -33,6 +33,7 @@ def main(argv):
     dst_file.write(template_file.read())
 
     InsertRes(dst_file, resdir, "res\\lua\\LuaCore","LUACORE")
+    InsertRes(dst_file, resdir, "res\\lua\\LuaChar","LUACHAR")
     InsertRes(dst_file, resdir, "res\\img","IMAGES")
 
     template_file.close()

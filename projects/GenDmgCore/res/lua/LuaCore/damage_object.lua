@@ -33,6 +33,16 @@ function DamageObject:initialize()
 	initPrivateMembers(self)
 end
 
+function DamageObject:merge(obj)
+	self:setBase( self:getBase() + obj:getBase() )
+	self:setRate( self:getRate() + obj:getRate() )
+	self:setResist( self:getResist() + obj:getResist() )
+	self:setAddition( self:getAddition() + obj:getAddition() )
+	self:setReflect( self:getReflect() + obj:getReflect() )
+	self:setCriticalRate( self:getCriticalRate() + obj:getCriticalRate() )
+	self:setCriticalDmg( self:getCriticalDmg() + obj:getCriticalDmg() )
+end
+
 function DamageObject:setBase(v)
 	_private[self].base = v
 end

@@ -1,5 +1,6 @@
 #include "CharacterConfig.h"
 #include "GenDmgCore.h"
+#include "LuaEngine.h"
 
 CharacterConfig::CharacterConfig()
 {
@@ -21,7 +22,6 @@ void CharacterConfig::setId(int val)
 	if (id_ != val)
 	{
 		id_ = val;
-		reset();
 	}
 
 }
@@ -87,26 +87,40 @@ void CharacterConfig::setIsFront(bool val)
 	isFront_ = val;
 }
 
-void CharacterConfig::reset()
+void CharacterConfig::load()
 {
 	lvProps_ = GenDmgCore::getInstance()->getCharacterLvProps(getId());
+	
+	auto briefs = GenDmgCore::getInstance()->getAllCharacterBrief();
+	brief_ = CharacterBrief();
+	for (auto brief : briefs)
+	{
+		if (brief.getId() == getId())
+		{
+			brief_ = brief;
+			break;
+		}
+	}
+
+	LuaEngine::getInstance()->genDmgList(brief_.getLuaPath(),this);
+	
 }
 
-int CharacterConfig::getHp() const
+int CharacterConfig::getBaseHp() const
 {
 	return getAverageVal([](const CharacterLvProp& prop)->int {
 		return prop.getHp();
 	});
 }
 
-int CharacterConfig::getAtk() const
+int CharacterConfig::getBaseAtk() const
 {
 	return getAverageVal([](const CharacterLvProp& prop)->int {
 		return prop.getAtk();
 	});
 }
 
-int CharacterConfig::getDef() const
+int CharacterConfig::getBaseDef() const
 {
 	return getAverageVal([](const CharacterLvProp& prop)->int {
 		return prop.getDef();
@@ -115,23 +129,23 @@ int CharacterConfig::getDef() const
 
 SpecialPropType CharacterConfig::getSpecialPropType() const
 {
-	SpecialPropType ret = SpecialPropType::None;
-
-
-	return ret;
+	bool isPerfectMatch = false;
+	int indx = getPrevLvPropIndex(isPerfectMatch);
+	return lvProps_[indx].getSpPropType();
 }
 
 double CharacterConfig::getSpecialPropVal() const
 {
-	double ret = 0.0;
-
-	return ret;
+	bool isPerfectMatch = false;
+	int indx = getPrevLvPropIndex(isPerfectMatch);
+	return lvProps_[indx].getSpPropValue();
 }
 
 int CharacterConfig::getPrevLvPropIndex(bool& isPerfectMatch) const
 {
 	int index = 0;
-	for (int i = 0;  i < lvProps_.size(); i++)
+	int propsCnt = lvProps_.size();
+	for (size_t i = 0;  i < propsCnt; i++)
 	{
 		const CharacterLvProp& curProp = lvProps_[i];
 		if (curProp.getLv() > getLv())
@@ -148,6 +162,14 @@ int CharacterConfig::getPrevLvPropIndex(bool& isPerfectMatch) const
 		}
 	}
 
+	if (propsCnt > 0)
+	{
+		if (getLv() == lvProps_[propsCnt - 1].getLv())
+		{
+			index = propsCnt - 1;
+		}
+	}
+
 	if (index < 0)
 		index = 0;
 
@@ -158,8 +180,8 @@ int CharacterConfig::getPrevLvPropIndex(bool& isPerfectMatch) const
 void CharacterConfig::getRelatedProp(CharacterLvProp& prevPrep, CharacterLvProp& nextPrep) const
 {
 	bool isPrefectMatch = false;
-	int prevIndx = getPrevLvPropIndex(isPrefectMatch);
-	int nextIndx = prevIndx + 1;
+	size_t prevIndx = getPrevLvPropIndex(isPrefectMatch);
+	size_t nextIndx = prevIndx + 1;
 
 	if (nextIndx >= lvProps_.size() || isPrefectMatch)
 		nextIndx = prevIndx;

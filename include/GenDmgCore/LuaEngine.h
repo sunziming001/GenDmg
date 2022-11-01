@@ -4,6 +4,7 @@
 #include <string>
 #include <set>
 #include "CharacterConfig.h"
+#include <map>
 
 extern "C"
 {
@@ -24,11 +25,11 @@ public:
 	void uninit();
 
 	void doScript(const std::string& fileName, const std::string& tag="");
-	void loadLuaModule(const std::string& moduleName);
+	void loadLuaModule(const std::string& moduleName, const std::string& tag = "");
 	std::string loadResource(const std::string& fileName, const std::string& tag="");
 	std::string loadResourceWithouSearch(const std::string& fileName, const std::string& tag);
 
-	void addCharacterConfig(const CharacterConfig& config);
+	std::map<std::string,int> genDmgList(const std::string& luaPath, const CharacterConfig* conf);
 private:
 	LuaEngine();
 	

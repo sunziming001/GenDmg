@@ -4,62 +4,67 @@
 <context>
     <name>CharacterBriefModel</name>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="102"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="108"/>
         <source>Fire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="105"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="111"/>
         <source>Water</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="108"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="114"/>
         <source>Wood</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="111"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="117"/>
         <source>Thunder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="114"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="120"/>
         <source>Wind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="117"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="123"/>
         <source>Ice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="120"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="126"/>
         <source>Stone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="126"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="132"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="165"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="176"/>
         <source>id</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="171"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="182"/>
         <source>name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="168"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="188"/>
+        <source>LuaPath</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="179"/>
         <source>DmgType</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="174"/>
+        <location filename="../../../../src/GenDmgView/CharacterBriefModel.cpp" line="185"/>
         <source>ImgPath</source>
         <translation type="unfinished"></translation>
     </message>

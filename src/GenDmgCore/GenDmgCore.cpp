@@ -7,6 +7,7 @@
 #include "LuaEngine.h"
 #include "CharacterConfig.h"
 
+
 GenDmgCore* GenDmgCore::getInstance()
 {
 	if (instance == nullptr)
@@ -21,27 +22,17 @@ void GenDmgCore::init()
 	LOG_INFO("GenDmgCore", "init.");
 	LuaEngine::getInstance()->init();
 	DBHelper::getInstance()->init();
-	LuaEngine::getInstance()->doScript("main.lua");
-
-	/*testInsert();
-	std::vector<CharacterBrief> briefs = getAllCharacterBrief();
-	for (auto b : briefs)
-	{
-		std::set<CharacterLvProp> props = DBHelper::getInstance()->selectLvProps(b.getId());
-	}
-	CharacterGrowRate rate;
-	rate.setName(base::AnsiToUtf8("123"));
-	for (int i = 1; i <= 13; i++)
-	{
-		rate.setLvRate(i, i);
-	}*/
-	//DBHelper::getInstance()->insertCharacterGrowRate(rate);
-	//auto set = DBHelper::getInstance()->selectAllCharacterGrowRate();
 	
+
 	CharacterConfig config;
-	config.setId(1);
-	config.setLv(71);
-	config.setIsBreak(true);
+	config.setId(3);
+	config.setLv(85);
+	config.setIsBreak(false);
+	config.setALv(10);
+	config.setELv(10);
+	config.setQLv(10);
+
+	config.load();
 
 
 }

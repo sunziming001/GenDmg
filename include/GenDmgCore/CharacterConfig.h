@@ -3,6 +3,7 @@
 #include "CoreDefine.h"
 
 #include "CharacterLvProp.h"
+#include "CharacterBrief.h"
 #include <vector>
 #include <functional>
 
@@ -34,11 +35,11 @@ public:
 
 
 
-	DLL_EXPORT void reset();
+	DLL_EXPORT void load();
 
-	DLL_EXPORT int getHp() const;
-	DLL_EXPORT int getAtk() const;
-	DLL_EXPORT int getDef() const;
+	DLL_EXPORT int getBaseHp() const;
+	DLL_EXPORT int getBaseAtk() const;
+	DLL_EXPORT int getBaseBaseDef() const;
 	DLL_EXPORT SpecialPropType getSpecialPropType()const;
 	DLL_EXPORT double getSpecialPropVal()const;
 
@@ -56,6 +57,7 @@ private:
 	bool isBreak_ = true;
 
 	std::vector<CharacterLvProp> lvProps_;
+	CharacterBrief brief_;
 
 };
 
